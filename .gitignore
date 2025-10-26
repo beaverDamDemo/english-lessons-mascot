@@ -1,0 +1,16 @@
+prepros.config
+
+# Node modules
+node_modules/
+
+# Vite build output
+dist/
+
+# Optional: OS-specific files
+.DS_Store
+Thumbs.db
+
+# Optional: editor-specific files
+.vscode/
+.idea/
+*.log
