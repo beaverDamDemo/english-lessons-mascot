@@ -455,6 +455,32 @@ h2 {
     transform: scale(1);
   }
 }
+.completion-badge {
+  display: none;
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #2e7d32;
+  background: #c8e6c9;
+  padding: 8px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: badgePop 0.5s ease;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 @keyframes fadeInUp {
   from {

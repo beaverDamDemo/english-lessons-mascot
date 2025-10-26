@@ -169,6 +169,9 @@ $(document).ready(function () {
 
     if (correct === total && total > 0) {
       celebrateSound.play();
+      $("#completion-badge").fadeIn();
+    } else {
+      $("#completion-badge").hide();
     }
   }
 
