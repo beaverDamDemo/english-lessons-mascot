@@ -77,6 +77,22 @@ const lessons = {
       "Yesterday, they _______ to the restaurant for dinner.|went",
     ],
   },
+  lesson4: {
+    topic: "is / are / was / were",
+    options: ["is", "are", "was", "were"],
+    examples: [
+      "The dog _______ hungry right now.|is",
+      "They _______ at the park yesterday afternoon.|were",
+      "My friends _______ very kind and helpful.|are",
+      "She _______ a teacher before she retired.|was",
+      "We _______ excited about the trip tomorrow.|are",
+      "He _______ at home when I called.|was",
+      "The books _______ on the shelf last week.|were",
+      "This sandwich _______ delicious!|is",
+      "You _______ very tired after the long hike.|were",
+      "The children _______ playing outside right now.|are",
+    ],
+  },
 };
 
 $(document).ready(function () {
