@@ -251,6 +251,18 @@ body.lesson1-bg {
 body.lesson2-bg {
   background: linear-gradient(to bottom, #bbdefb, #64b5f6); /* soft blue */
 }
+body.lesson3-bg {
+  background: linear-gradient(
+    to bottom,
+    #e1f5fe,
+    #81d4fa
+  ); /* light blue theme */
+}
+.lesson3-bg .lesson-btn[data-lesson="lesson3"] {
+  background: linear-gradient(to right, #4fc3f7, #0288d1);
+  color: #fff;
+}
+
 .start-message {
   text-align: center;
   font-size: 1.2em;

@@ -51,6 +51,32 @@ const lessons = {
       "_______ is very kind.|she",
     ],
   },
+  lesson3: {
+    topic: ["go", "will go", "am going", "went"],
+    options: ["go", "will go", "am going", "went"],
+    examples: [
+      "I _______ to school every day.|go",
+      "She _______ to the market yesterday.|went",
+      "We _______ to the zoo tomorrow.|will go",
+      "He _______ to the gym now.|is going",
+      "They _______ to the beach last weekend.|went",
+      "I _______ to work by bus.|go",
+      "You _______ to the party tonight.|are going",
+      "He _______ to the dentist yesterday.|went",
+      "We _______ to the cinema every Friday.|go",
+      "I _______ to the store later.|will go",
+      "She _______ to the library now.|is going",
+      "They _______ to the mountains last summer.|went",
+      "I _______ to the bakery every morning.|go",
+      "We _______ to the museum tomorrow.|will go",
+      "He _______ to the café now.|is going",
+      "You _______ to the concert last night.|went",
+      "I _______ to the gym on Mondays.|go",
+      "She _______ to the doctor later.|will go",
+      "We _______ to the park now.|are going",
+      "They _______ to the restaurant yesterday.|went",
+    ],
+  },
 };
 
 $(document).ready(function () {
