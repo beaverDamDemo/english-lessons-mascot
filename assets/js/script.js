@@ -243,12 +243,12 @@ $(document).ready(function () {
     }
   }
 
-  // Handle lesson switch
   $(".lesson-btn").on("click", function () {
     $("#start-message").hide();
     $(".lesson-btn").removeClass("active");
     $(this).addClass("active");
     const lessonKey = $(this).data("lesson");
+    $(".progress-container").fadeIn(300); // ✅ Ensure it's visible
     loadLesson(lessonKey);
   });
 
@@ -277,7 +277,7 @@ $(document).ready(function () {
 
     // Optional: fade out overlay
     $("#mascot-overlay").fadeOut(600, function () {
-      // ✅ Load lesson only after overlay is gone
+      $(".progress-container").fadeIn(300); // ✅ Show progress bar
       loadLesson("lesson1");
     });
   });
