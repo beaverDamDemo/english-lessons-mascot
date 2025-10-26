@@ -291,12 +291,42 @@ h2 {
 .reference-bar {
   position: sticky;
   top: 0;
-  background: #fff3cd;
-  padding: 10px;
-  text-align: center;
+  background: linear-gradient(
+    to right,
+    var(--lesson1-accent),
+    var(--lesson1-bg-bottom)
+  );
+  color: var(--white);
+  padding: 12px 20px;
   font-size: 1.1em;
-  border-bottom: 2px solid var(--lesson1-bg-bottom);
+  font-weight: bold;
+  text-align: center;
+  border-bottom: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 12px 12px;
   z-index: 10;
+  transition: background 0.3s ease;
+}
+.lesson2-bg .reference-bar {
+  background: linear-gradient(
+    to right,
+    var(--lesson2-accent),
+    var(--lesson2-bg-bottom)
+  );
+}
+.lesson3-bg .reference-bar {
+  background: linear-gradient(
+    to right,
+    var(--lesson3-accent),
+    var(--lesson3-bg-bottom)
+  );
+}
+.lesson4-bg .reference-bar {
+  background: linear-gradient(
+    to right,
+    var(--lesson4-accent),
+    var(--lesson4-bg-bottom)
+  );
 }
 
 .mark {
