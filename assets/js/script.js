@@ -167,6 +167,13 @@ $(document).ready(function () {
     });
 
     animateCards();
+
+    gsap.from(".reference-bar", {
+      y: -50,
+      opacity: 0,
+      duration: 0.4,
+      ease: "back.out(1.7)",
+    });
   }
 
   // Handle answer clicks
@@ -243,12 +250,6 @@ $(document).ready(function () {
     $(this).addClass("active");
     const lessonKey = $(this).data("lesson");
     loadLesson(lessonKey);
-    gsap.from(".reference-bar", {
-      y: -50,
-      opacity: 0,
-      duration: 0.4,
-      ease: "back.out(1.7)",
-    });
   });
 
   $("#start-button").on("click", function () {
