@@ -55,7 +55,7 @@ const lessons = {
 
 $(document).ready(function () {
   $("#start-button").on("click", function () {
-    $("#start-overlay").fadeOut(500);
+    $("#mascot-overlay").fadeOut(500);
   });
 
   let correct = 0;
