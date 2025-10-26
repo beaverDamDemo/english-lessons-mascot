@@ -1,8 +1,63 @@
+:root {
+  --text-dark: #333;
+  --text-accent: #4a2fbd;
+  --white: #fff;
+
+  --lesson1-bg-top: #fceabb;
+  --lesson1-bg-bottom: #f8b500;
+  --lesson1-card: #fff8e1;
+  --lesson1-accent: #ffcc70;
+
+  --lesson2-bg-top: #bbdefb;
+  --lesson2-bg-bottom: #64b5f6;
+  --lesson2-card: #e3f2fd;
+  --lesson2-accent: #42a5f5;
+
+  --lesson3-bg-top: #e1f5fe;
+  --lesson3-bg-bottom: #81d4fa;
+  --lesson3-card: #e0f7fa;
+  --lesson3-accent: #4fc3f7;
+
+  --correct-bg: #c8e6c9;
+  --correct-text: #2e7d32;
+  --wrong-bg: #ffcdd2;
+  --wrong-text: #c62828;
+
+  --btn-green-start: #81c784;
+  --btn-green-end: #66bb6a;
+  --btn-green-hover: #43a047;
+}
 body {
   margin: 0;
   font-family: "Baloo 2", cursive;
-  background: linear-gradient(to bottom, #fceabb, #f8b500);
-  color: #333;
+  background: linear-gradient(
+    to bottom,
+    var(--lesson1-bg-top),
+    var(--lesson1-bg-bottom)
+  );
+  color: var(--text-dark);
+}
+
+body.lesson1-bg {
+  background: linear-gradient(
+    to bottom,
+    var(--lesson1-bg-top),
+    var(--lesson1-bg-bottom)
+  );
+}
+body.lesson2-bg {
+  background: linear-gradient(
+    to bottom,
+    var(--lesson2-bg-top),
+    var(--lesson2-bg-bottom)
+  );
+}
+body.lesson3-bg {
+  background: linear-gradient(
+    to bottom,
+    var(--lesson3-bg-top),
+    var(--lesson3-bg-bottom)
+  );
 }
 
 .container {
@@ -14,21 +69,53 @@ body {
 h1,
 h2 {
   text-align: center;
-  color: #4a2fbd;
+  color: var(--text-accent);
 }
 
 .card {
-  background: #fff8dc;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 15px 0;
-  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 0.4s ease;
   position: relative;
 }
 
-.question {
+.lesson1-bg .card {
+  background: var(--lesson1-card);
+}
+.lesson2-bg .card {
+  background: var(--lesson2-card);
+}
+.lesson3-bg .card {
+  background: var(--lesson3-card);
+}
+
+.lesson1-bg .lesson-btn[data-lesson="lesson1"] {
+  background: linear-gradient(to right, var(--lesson1-bg-bottom), #fdd835);
+  color: var(--white);
+}
+.lesson2-bg .lesson-btn[data-lesson="lesson2"] {
+  background: linear-gradient(to right, var(--lesson2-accent), #478ed1);
+  color: var(--white);
+}
+.lesson3-bg .lesson-btn[data-lesson="lesson3"] {
+  background: linear-gradient(to right, var(--lesson3-accent), #0288d1);
+  color: var(--white);
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card .question {
   font-size: 1.2em;
-  margin-bottom: 10px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .reveal {
@@ -66,10 +153,23 @@ h2 {
   transition: all 0.3s ease;
 }
 
+.blank.correct {
+  background: var(--correct-bg);
+  color: var(--correct-text);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.blank.wrong {
+  background: var(--wrong-bg);
+  color: var(--wrong-text);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
 .blank.revealed {
   animation: pop 0.4s ease;
 }
-
 @keyframes pop {
   0% {
     transform: scale(0.8);
@@ -83,13 +183,14 @@ h2 {
     transform: scale(1);
   }
 }
+
 .reset-btn {
   display: block;
   margin: 30px auto;
   padding: 12px 20px;
   font-size: 1em;
-  background: #4a2fbd;
-  color: #fff;
+  background: var(--text-accent);
+  color: var(--white);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -104,7 +205,7 @@ h2 {
   margin: 20px auto;
   text-align: center;
   font-size: 1em;
-  color: #333;
+  color: var(--text-dark);
 }
 
 .progress-bar {
@@ -134,7 +235,7 @@ h2 {
   padding: 10px;
   text-align: center;
   font-size: 1.1em;
-  border-bottom: 2px solid #f8b500;
+  border-bottom: 2px solid var(--lesson1-bg-bottom);
   z-index: 10;
 }
 
@@ -148,13 +249,13 @@ h2 {
 }
 
 .mark.correct {
-  background: #c8e6c9;
-  color: #2e7d32;
+  background: var(--correct-bg);
+  color: var(--correct-text);
 }
 
 .mark.wrong {
-  background: #ffcdd2;
-  color: #c62828;
+  background: var(--wrong-bg);
+  color: var(--wrong-text);
 }
 .options {
   display: flex;
@@ -165,42 +266,37 @@ h2 {
 }
 
 .option-btn {
-  background: #ffe082;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 6px;
   font-size: 1em;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    var(--btn-green-start),
+    var(--btn-green-end)
+  );
+  color: white;
   cursor: pointer;
-  transition: background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
 .option-btn:hover {
-  background: #ffd54f;
+  transform: scale(1.05);
+  background: linear-gradient(
+    to right,
+    var(--btn-green-end),
+    var(--btn-green-hover)
+  );
 }
 
-.blank.correct {
-  background: #c8e6c9;
-  color: #2e7d32;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 5px;
-}
-
-.blank.wrong {
-  background: #ffcdd2;
-  color: #c62828;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 5px;
-}
 .lesson-switcher {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin: 20px 0;
 }
-
-/* Default button base */
 .lesson-btn {
   padding: 12px 18px;
   font-size: 1em;
@@ -211,56 +307,11 @@ h2 {
   transition: transform 0.2s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-/* Hover and active effects */
 .lesson-btn:hover {
   transform: scale(1.05);
 }
 .lesson-btn:active {
   transform: scale(0.98);
-}
-
-/* Theme: Lesson 1 (yellow-orange) */
-.lesson1-bg .lesson-btn[data-lesson="lesson1"] {
-  background: linear-gradient(to right, #f8b500, #fdd835);
-  color: #fff;
-}
-.lesson1-bg .lesson-btn[data-lesson="lesson2"] {
-  background: #eee;
-  color: #333;
-}
-
-/* Theme: Lesson 2 (blue) */
-.lesson2-bg .lesson-btn[data-lesson="lesson2"] {
-  background: linear-gradient(to right, #42a5f5, #478ed1);
-  color: #fff;
-}
-.lesson2-bg .lesson-btn[data-lesson="lesson1"] {
-  background: #eee;
-  color: #333;
-}
-
-body.lesson1-bg {
-  background: linear-gradient(
-    to bottom,
-    #fceabb,
-    #f8b500
-  ); /* warm yellow-orange */
-}
-
-body.lesson2-bg {
-  background: linear-gradient(to bottom, #bbdefb, #64b5f6); /* soft blue */
-}
-body.lesson3-bg {
-  background: linear-gradient(
-    to bottom,
-    #e1f5fe,
-    #81d4fa
-  ); /* light blue theme */
-}
-.lesson3-bg .lesson-btn[data-lesson="lesson3"] {
-  background: linear-gradient(to right, #4fc3f7, #0288d1);
-  color: #fff;
 }
 
 .start-message {
@@ -354,4 +405,29 @@ body.lesson3-bg {
   width: 100%;
   height: 100%;
   z-index: 9999;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
