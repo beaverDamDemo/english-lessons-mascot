@@ -95,9 +95,35 @@ const lessons = {
   },
 };
 
+function animateCards() {
+  const cards = $("#lesson-container .card").toArray();
+  gsap.from(cards, {
+    y: 30,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 0.6,
+    ease: "power2.out",
+    clearProps: "opacity,transform",
+  });
+}
+
 $(document).ready(function () {
   $("#start-button").on("click", function () {
     $("#mascot-overlay").fadeOut(500);
+  });
+  gsap.to("#start-button", {
+    scale: 1.05,
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+  gsap.from(".mascot-box img", {
+    y: -20,
+    scale: 0.9,
+    opacity: 0,
+    duration: 0.6,
+    ease: "bounce.out",
   });
 
   let correct = 0;
@@ -111,16 +137,14 @@ $(document).ready(function () {
   function loadLesson(lessonKey) {
     const { topic, options, examples } = lessons[lessonKey];
 
-    // Update background class
     $("body").removeClass().addClass(`${lessonKey}-bg`);
-
-    // Reset and render lesson
     $("#lesson-container").empty();
     $(".reference-bar").html(`<strong>Topic:</strong> ${topic}`);
     correct = 0;
     wrong = 0;
     updateProgress();
 
+    // Build cards first
     examples.forEach((item, index) => {
       const [sentence, answer] = item.split("|");
       const card = $(`
@@ -141,6 +165,8 @@ $(document).ready(function () {
     `);
       $("#lesson-container").append(card);
     });
+
+    animateCards();
   }
 
   // Handle answer clicks
@@ -156,6 +182,20 @@ $(document).ready(function () {
         blank.addClass("correct");
         correct++;
         correctSound.play();
+        gsap.fromTo(
+          blank,
+          {
+            scale: 1,
+          },
+          {
+            scale: 1.2,
+            backgroundColor: "#c8e6c9",
+            duration: 0.3,
+            yoyo: true,
+            repeat: 1,
+            ease: "power1.inOut",
+          }
+        );
       } else {
         blank.addClass("wrong");
         wrong++;
@@ -178,7 +218,12 @@ $(document).ready(function () {
     const total = $(".card").length;
     const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-    $(".progress-fill").css("width", percent + "%");
+    gsap.to(".progress-fill", {
+      width: percent + "%",
+      duration: 0.5,
+      ease: "power1.out",
+    });
+
     $(".progress-text").text(
       `Correct: ${correct} | Wrong: ${wrong} | Score: ${percent}%`
     );
@@ -198,10 +243,13 @@ $(document).ready(function () {
     $(this).addClass("active");
     const lessonKey = $(this).data("lesson");
     loadLesson(lessonKey);
+    gsap.from(".reference-bar", {
+      y: -50,
+      opacity: 0,
+      duration: 0.4,
+      ease: "back.out(1.7)",
+    });
   });
-
-  // Load default lesson
-  loadLesson("lesson1");
 
   $("#start-button").on("click", function () {
     // Sparkle burst
@@ -227,6 +275,9 @@ $(document).ready(function () {
     });
 
     // Optional: fade out overlay
-    $("#mascot-overlay").fadeOut(600);
+    $("#mascot-overlay").fadeOut(600, function () {
+      // ✅ Load lesson only after overlay is gone
+      loadLesson("lesson1");
+    });
   });
 });
