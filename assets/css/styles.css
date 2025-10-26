@@ -26,6 +26,15 @@
   --btn-green-start: #81c784;
   --btn-green-end: #66bb6a;
   --btn-green-hover: #43a047;
+
+  --progress1-start: #f8b500;
+  --progress1-end: #ffcc70;
+
+  --progress2-start: #42a5f5;
+  --progress2-end: #64b5f6;
+
+  --progress3-start: #4fc3f7;
+  --progress3-end: #81d4fa;
 }
 body {
   margin: 0;
@@ -223,6 +232,32 @@ h2 {
   width: 0%;
   background: linear-gradient(to right, #4caf50, #8bc34a);
   transition: width 0.5s ease;
+  transition: width 0.5s ease, background 0.3s ease;
+  border-radius: 10px;
+}
+
+.lesson1-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress1-start),
+    var(--progress1-end)
+  );
+}
+
+.lesson2-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress2-start),
+    var(--progress2-end)
+  );
+}
+
+.lesson3-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress3-start),
+    var(--progress3-end)
+  );
 }
 
 .progress-text {
