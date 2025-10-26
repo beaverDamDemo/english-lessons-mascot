@@ -157,4 +157,31 @@ $(document).ready(function () {
 
   // Load default lesson
   loadLesson("lesson1");
+
+  $("#start-button").on("click", function () {
+    // Sparkle burst
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#ffcc00", "#ff66cc", "#66ccff", "#99ff99"],
+    });
+
+    // Emoji trail burst
+    confetti({
+      particleCount: 40,
+      angle: 90,
+      spread: 45,
+      origin: { x: 0.5, y: 0.5 },
+      shapes: ["text"],
+      scalar: 1.2,
+      ticks: 200,
+      gravity: 0.4,
+      drift: 0.5,
+      text: ["✨", "🚀", "🎉", "🦊"],
+    });
+
+    // Optional: fade out overlay
+    $("#mascot-overlay").fadeOut(600);
+  });
 });
