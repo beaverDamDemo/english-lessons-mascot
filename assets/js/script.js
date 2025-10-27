@@ -154,6 +154,40 @@ $(document).ready(function () {
     if (correct === total && total > 0) {
       celebrateSound.play();
       $("#completion-badge").fadeIn();
+
+      // 🎉 Confetti burst
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ["#ffcc00", "#ff66cc", "#66ccff", "#99ff99"],
+      });
+
+      // ✨ Emoji trail
+      confetti({
+        particleCount: 50,
+        angle: 90,
+        spread: 60,
+        origin: { x: 0.5, y: 0.5 },
+        shapes: ["text"],
+        scalar: 1.4,
+        ticks: 180,
+        gravity: 0.3,
+        drift: 0.6,
+        text: ["🎉", "🌟", "🏆", "👏"],
+      });
+
+      // 🏅 Badge animation
+      gsap.fromTo(
+        "#completion-badge",
+        { scale: 0.8, opacity: 0 },
+        {
+          scale: 1.2,
+          opacity: 1,
+          duration: 0.6,
+          ease: "elastic.out(1, 0.5)",
+        }
+      );
     } else {
       $("#completion-badge").hide();
     }
