@@ -1,0 +1,96 @@
+{
+  "lesson1": {
+    "topic": "me / you / my / your",
+    "options": ["me", "you", "my", "your"],
+    "examples": [
+      "She said to me: 'I like _______.'|you",
+      "This is _______ book on the table.|my",
+      "Can you help _______ carry these bags?|me",
+      "Is that _______ phone ringing?|your",
+      "She gave _______ a gift after the meeting.|me",
+      "I see _______ every day when I walk to school.|you",
+      "_______ shoes are dirty from playing outside.|your",
+      "_______ name is John, and he lives next door.|my",
+      "Please call _______ later when you get home.|me",
+      "I want to talk to _______ about the homework.|you",
+      "_______ dog is very friendly with children.|your",
+      "_______ house is big and clean, with a red roof.|my",
+      "He told _______ a funny story during lunch.|me",
+      "I will meet _______ at 5 PM near the station.|you",
+      "_______ brother is tall and plays basketball.|your",
+      "_______ sister is a doctor who works at the hospital.|my",
+      "Can you show _______ the way to the library?|me",
+      "I made this for _______ because you helped me.|you",
+      "_______ car is very fast and has tinted windows.|your",
+      "_______ favorite color is blue, just like the sky.|my"
+    ]
+  },
+  "lesson2": {
+    "topic": "he / she / his / her",
+    "options": ["he", "she", "his", "her"],
+    "examples": [
+      "_______ is my brother and he plays guitar.|he",
+      "_______ is my sister and she loves painting.|she",
+      "This is _______ book that he lent me.|his",
+      "That is _______ phone on the desk.|her",
+      "I saw her and said: I like _______.|her",
+      "_______ dog is very big and barks loudly.|his",
+      "_______ name is Anna and she’s from Canada.|her",
+      "_______ is a doctor who works at the clinic.|he",
+      "I see _______ every day at the bus stop.|him",
+      "I talk to _______ on the phone every weekend.|her",
+      "_______ car is red and parked outside.|his",
+      "_______ house is yellow with a green door.|her",
+      "_______ is my uncle who lives in London.|he",
+      "_______ is my aunt who teaches math.|she",
+      "I gave the gift to _______ after the ceremony.|her",
+      "I saw _______ at school during lunch break.|him",
+      "_______ pencil is on the desk next to the notebook.|his",
+      "_______ backpack is pink and has a unicorn on it.|her",
+      "_______ is very tall and plays volleyball.|he",
+      "_______ is very kind and helps everyone.|she"
+    ]
+  },
+  "lesson3": {
+    "topic": ["go", "will go", "am going", "went"],
+    "options": ["go", "will go", "am going", "went"],
+    "examples": [
+      "Every weekday, I _______ to school by bike.|go",
+      "Yesterday, she _______ to the market to buy vegetables.|went",
+      "Tomorrow, we _______ to the zoo with our class.|will go",
+      "Right now, he _______ to the gym for his workout.|is going",
+      "Last weekend, they _______ to the beach for a picnic.|went",
+      "On Mondays, I _______ to work by bus.|go",
+      "Tonight, you _______ to the party with your friends.|are going",
+      "Yesterday morning, he _______ to the dentist for a checkup.|went",
+      "Every Friday, we _______ to the cinema after dinner.|go",
+      "Later today, I _______ to the store to buy milk.|will go",
+      "At the moment, she _______ to the library to study.|is going",
+      "Last summer, they _______ to the mountains for hiking.|went",
+      "Each morning, I _______ to the bakery for fresh bread.|go",
+      "Tomorrow, we _______ to the museum for a school trip.|will go",
+      "Right now, he _______ to the café to meet a friend.|is going",
+      "Last night, you _______ to the concert downtown.|went",
+      "On Mondays, I _______ to the gym before work.|go",
+      "Later today, she _______ to the doctor for a checkup.|will go",
+      "Right now, we _______ to the park to play football.|are going",
+      "Yesterday, they _______ to the restaurant for dinner.|went"
+    ]
+  },
+  "lesson4": {
+    "topic": "is / are / was / were",
+    "options": ["is", "are", "was", "were"],
+    "examples": [
+      "The dog _______ hungry right now.|is",
+      "They _______ at the park yesterday afternoon.|were",
+      "My friends _______ very kind and helpful.|are",
+      "She _______ a teacher before she retired.|was",
+      "We _______ excited about the trip tomorrow.|are",
+      "He _______ at home when I called.|was",
+      "The books _______ on the shelf last week.|were",
+      "This sandwich _______ delicious!|is",
+      "You _______ very tired after the long hike.|were",
+      "The children _______ playing outside right now.|are"
+    ]
+  }
+}
