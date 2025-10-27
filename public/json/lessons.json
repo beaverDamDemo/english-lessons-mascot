@@ -97,5 +97,21 @@
       "My parents _______ in Italy last summer.|were",
       "This painting _______ made by a famous artist.|was"
     ]
+  },
+  "lesson5": {
+    "topic": "Do / Does / Did / Are / Is",
+    "options": ["Do", "Does", "Did", "Are", "Is"],
+    "examples": [
+      "_______ you like pizza?|Do",
+      "_______ she live near here?|Does",
+      "_______ he your teacher?|Is",
+      "_______ we going to the park today?|Are",
+      "_______ you see that movie last weekend?|Did",
+      "_______ it raining right now?|Is",
+      "_______ your friends coming over later?|Are",
+      "_______ he play guitar well?|Does",
+      "_______ you remember her name?|Do",
+      "_______ she call you yesterday?|Did"
+    ]
   }
 }

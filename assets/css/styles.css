@@ -25,6 +25,13 @@
   --progress4-start: #ba68c8;
   --progress4-end: #ab47bc;
 
+  --lesson5-bg-top: #e0f7e9;
+  --lesson5-bg-bottom: #80cbc4;
+  --lesson5-card: #e0f2f1;
+  --lesson5-accent: #26a69a;
+  --progress5-start: #26a69a;
+  --progress5-end: #00796b;
+
   --correct-bg: #c8e6c9;
   --correct-text: #2e7d32;
   --wrong-bg: #ffcdd2;
@@ -82,6 +89,17 @@ body.lesson4-bg {
     var(--lesson4-bg-bottom)
   );
 }
+body.lesson5-bg {
+  background: linear-gradient(
+    to bottom,
+    var(--lesson5-bg-top),
+    var(--lesson5-bg-bottom)
+  );
+}
+
+.lesson5-bg .card {
+  background: var(--lesson5-card);
+}
 
 .container {
   padding: 20px;
@@ -132,6 +150,11 @@ h2 {
   background: linear-gradient(to right, var(--lesson4-accent), #9c27b0);
   color: #fff;
 }
+.lesson5-bg .lesson-btn[data-lesson="lesson5"] {
+  background: linear-gradient(to right, var(--lesson5-accent), #009688);
+  color: #fff;
+}
+
 .lesson4-bg .card {
   background: var(--lesson4-card);
 }
@@ -142,6 +165,14 @@ h2 {
     var(--progress4-end)
   );
 }
+.lesson5-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress5-start),
+    var(--progress5-end)
+  );
+}
+
 .card:hover {
   transform: scale(1.02);
 }
