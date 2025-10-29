@@ -13,7 +13,7 @@ function animateCards() {
 }
 
 $(document).ready(function () {
-  fetch("/json/lessons.json")
+  fetch("../public/json/lessons.json")
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
       return res.json();
