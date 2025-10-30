@@ -638,3 +638,18 @@ h2 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 999;
 }
+.badge-unlocked {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #ffd700, #ff9800);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}

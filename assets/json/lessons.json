@@ -52,8 +52,8 @@
     ]
   },
   "lesson3": {
-    "topic": ["go", "will go", "am going", "went"],
-    "options": ["go", "will go", "am going", "went"],
+    "topic": ["go", "will go", "went", "am going", "is going", "are going"],
+    "options": ["go", "will go", "went", "am going", "is going", "are going"],
     "examples": [
       "Every weekday, I _______ to school by bike.|go",
       "Yesterday, she _______ to the market for fruit.|went",

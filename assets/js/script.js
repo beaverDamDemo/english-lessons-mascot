@@ -151,8 +151,33 @@ $(document).ready(function () {
             .fadeIn(300)
             .delay(1500)
             .fadeOut(500);
+        }
 
-          // Optional: reset streak or let it continue
+        if (streak === 10) {
+          // 🏅 Badge unlock celebration
+          happyBlipSound.play(); // or a special badge sound
+
+          $("#streak-badge").css({ scale: 0.8, opacity: 0 }).show();
+
+          gsap.to("#streak-badge", {
+            scale: 1.2,
+            opacity: 1,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.5)",
+          });
+
+          gsap.to("#streak-badge", {
+            delay: 2,
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.5,
+            ease: "power1.in",
+            onComplete: () => {
+              $("#streak-badge").hide();
+            },
+          });
+
+          // Reset streak after badge
           streak = 0;
         }
 
