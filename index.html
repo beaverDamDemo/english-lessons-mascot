@@ -38,6 +38,11 @@
       preload="auto"
     ></audio>
     <audio id="sound-reset" src="assets/audio/pop.mp3" preload="auto"></audio>
+    <audio
+      id="sound-happy-blip"
+      src="assets/audio/happy-blip.wav"
+      preload="auto"
+    ></audio>
   </head>
   <body>
     <div id="mascot-overlay" class="mascot-overlay">
@@ -86,6 +91,8 @@
       <div id="lesson-container"></div>
 
       <button id="reset" class="reset-btn">🔄 Reset All</button>
+
+      <div id="streak-toast" class="toast">🔥 5 in a row! You're on fire!</div>
     </div>
 
     <canvas id="effect-canvas"></canvas>

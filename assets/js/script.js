@@ -46,11 +46,13 @@ $(document).ready(function () {
 
   let correct = 0;
   let wrong = 0;
+  let streak = 0;
 
   const correctSound = document.getElementById("sound-correct");
   const wrongSound = document.getElementById("sound-wrong");
   const celebrateSound = document.getElementById("sound-celebrate");
   const resetSound = document.getElementById("sound-reset");
+  const happyBlipSound = document.getElementById("sound-happy-blip");
 
   function loadLesson(lessonKey) {
     const lesson = lessons.get(lessonKey);
@@ -117,6 +119,43 @@ $(document).ready(function () {
       blank.addClass("correct");
       if (!wasCorrect) {
         correct++;
+
+        streak++;
+        if (streak === 5) {
+          happyBlipSound.play();
+
+          // 🎊 Streak confetti burst
+          confetti({
+            particleCount: 80,
+            spread: 100,
+            origin: { y: 0.4 },
+            colors: ["#ffd700", "#ff69b4", "#00bcd4", "#8bc34a"],
+          });
+
+          // 🌟 Emoji trail
+          confetti({
+            particleCount: 40,
+            angle: 90,
+            spread: 70,
+            origin: { x: 0.5, y: 0.5 },
+            shapes: ["text"],
+            scalar: 1.6,
+            ticks: 200,
+            gravity: 0.25,
+            drift: 0.4,
+            text: ["🔥", "💯", "🎯", "👏"],
+          });
+
+          $("#streak-toast")
+            .text("🔥 5 in a row! You're on fire!")
+            .fadeIn(300)
+            .delay(1500)
+            .fadeOut(500);
+
+          // Optional: reset streak or let it continue
+          streak = 0;
+        }
+
         if (wasWrong) wrong--; // Adjust if switching from wrong to correct
       }
       correctSound.play();
