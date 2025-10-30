@@ -641,15 +641,43 @@ h2 {
 .badge-unlocked {
   display: none;
   position: fixed;
-  top: 30%;
   left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(to right, #ffd700, #ff9800);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ffd700, #ff9800, #ffca28);
   color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-size: 1.2rem;
+  padding: 1.2rem 2.5rem;
+  border-radius: 16px;
+  font-size: 1.3rem;
   font-weight: bold;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.3);
   z-index: 999;
+  overflow: hidden;
+}
+
+/* ✨ Sparkle overlay */
+.badge-unlocked::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  pointer-events: none;
+  animation: sparkleShift 3s linear infinite;
+}
+
+@keyframes sparkleShift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
 }

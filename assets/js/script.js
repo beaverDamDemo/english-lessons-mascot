@@ -155,22 +155,30 @@ $(document).ready(function () {
 
         if (streak === 10) {
           // 🏅 Badge unlock celebration
-          happyBlipSound.play(); // or a special badge sound
+          happyBlipSound.play();
 
-          $("#streak-badge").css({ scale: 0.8, opacity: 0 }).show();
-
-          gsap.to("#streak-badge", {
-            scale: 1.2,
-            opacity: 1,
-            duration: 0.6,
-            ease: "elastic.out(1, 0.5)",
+          gsap.set("#streak-badge", {
+            display: "block",
+            opacity: 0.5,
+            scale: 0.8,
           });
 
+          gsap.fromTo(
+            "#streak-badge",
+            { scale: 0.8 },
+            {
+              scale: 1.2,
+              opacity: 1,
+              duration: 3,
+              ease: "elastic.out(1, 0.5)",
+            }
+          );
+
           gsap.to("#streak-badge", {
-            delay: 2,
-            opacity: 0,
+            delay: 3,
+            opacity: 0.5,
             scale: 0.8,
-            duration: 0.5,
+            duration: 2.5,
             ease: "power1.in",
             onComplete: () => {
               $("#streak-badge").hide();
