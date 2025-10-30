@@ -37,9 +37,11 @@
   --wrong-bg: #ffcdd2;
   --wrong-text: #c62828;
 
-  --btn-green-start: #81c784;
-  --btn-green-end: #66bb6a;
-  --btn-green-hover: #43a047;
+  --btn-green-start: #66a06b; /* was #81c784 */
+  --btn-green-end: #519f5a; /* was #66bb6a */
+  --btn-green-hover: #388e3c;
+  --btn-green-selected: #a5d6a7; /* light green */
+  --btn-green-selected-border: #81c784; /* slightly darker border */
 
   --progress1-start: #f8b500;
   --progress1-end: #ffcc70;
@@ -432,6 +434,11 @@ h2 {
     var(--btn-green-end),
     var(--btn-green-hover)
   );
+}
+
+.option-btn.selected {
+  background: var(--btn-green-selected);
+  border-color: var(--btn-green-selected-border);
 }
 
 .lesson-switcher {

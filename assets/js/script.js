@@ -100,37 +100,48 @@ $(document).ready(function () {
   $("#lesson-container").on("click", ".option-btn", function () {
     const userChoice = $(this).data("choice");
     const correctAnswer = $(this).data("answer");
-    const card = $(this).closest(".card")[0]; // DOM element
+    const card = $(this).closest(".card")[0];
     const blank = $(card).find(".blank");
 
-    if (!answeredCards.has(card)) {
-      answeredCards.add(card);
-      blank.text(userChoice);
+    const wasCorrect = blank.hasClass("correct");
+    const wasWrong = blank.hasClass("wrong");
 
-      if (userChoice === correctAnswer) {
-        blank.addClass("correct");
+    // Reset previous state
+    blank.removeClass("correct wrong").text(userChoice);
+
+    // Remove highlight from other buttons
+    $(card).find(".option-btn").removeClass("selected");
+    $(this).addClass("selected");
+
+    if (userChoice === correctAnswer) {
+      blank.addClass("correct");
+      if (!wasCorrect) {
         correct++;
-        correctSound.play();
-        gsap.fromTo(
-          blank,
-          { scale: 1 },
-          {
-            scale: 1.2,
-            backgroundColor: "#c8e6c9",
-            duration: 0.3,
-            yoyo: true,
-            repeat: 1,
-            ease: "power1.inOut",
-          }
-        );
-      } else {
-        blank.addClass("wrong");
-        wrong++;
-        wrongSound.play();
+        if (wasWrong) wrong--; // Adjust if switching from wrong to correct
       }
-
-      updateProgress();
+      correctSound.play();
+      gsap.fromTo(
+        blank,
+        { scale: 1 },
+        {
+          scale: 1.2,
+          backgroundColor: "#c8e6c9",
+          duration: 0.3,
+          yoyo: true,
+          repeat: 1,
+          ease: "power1.inOut",
+        }
+      );
+    } else {
+      blank.addClass("wrong");
+      if (!wasWrong) {
+        wrong++;
+        if (wasCorrect) correct--; // Adjust if switching from correct to wrong
+      }
+      wrongSound.play();
     }
+
+    updateProgress();
   });
 
   $("#reset").on("click", function () {
