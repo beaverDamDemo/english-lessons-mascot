@@ -163,6 +163,20 @@ $(document).ready(function () {
             scale: 0.8,
           });
 
+          // ✨ Sparkle trail burst
+          confetti({
+            particleCount: 40,
+            angle: 90,
+            spread: 60,
+            origin: { x: 0.5, y: 0.5 },
+            shapes: ["text"],
+            scalar: 1.4,
+            ticks: 180,
+            gravity: 0.3,
+            drift: 0.6,
+            text: ["✨", "🌟", "💫", "🎖️"],
+          });
+
           gsap.fromTo(
             "#streak-badge",
             { scale: 0.8 },
