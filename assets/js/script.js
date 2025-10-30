@@ -1,4 +1,5 @@
-let lessons = {};
+const lessons = new Map();
+const answeredCards = new Set();
 
 function animateCards() {
   const cards = $("#lesson-container .card").toArray();
@@ -19,11 +20,12 @@ $(document).ready(function () {
       return res.json();
     })
     .then((data) => {
-      lessons = data;
+      Object.entries(data).forEach(([key, value]) => lessons.set(key, value));
     })
     .catch((err) => {
       console.error("Failed to load lessons:", err);
     });
+
   $("#start-button").on("click", function () {
     $("#mascot-overlay").fadeOut(500);
   });
@@ -51,7 +53,10 @@ $(document).ready(function () {
   const resetSound = document.getElementById("sound-reset");
 
   function loadLesson(lessonKey) {
-    const { topic, options, examples } = lessons[lessonKey];
+    const lesson = lessons.get(lessonKey);
+    if (!lesson) return;
+
+    const { topic, options, examples } = lesson;
 
     $("body").removeClass().addClass(`${lessonKey}-bg`);
     $("#lesson-container").empty();
@@ -92,24 +97,23 @@ $(document).ready(function () {
     });
   }
 
-  // Handle answer clicks
   $("#lesson-container").on("click", ".option-btn", function () {
     const userChoice = $(this).data("choice");
     const correctAnswer = $(this).data("answer");
-    const card = $(this).closest(".card");
-    const blank = card.find(".blank");
+    const card = $(this).closest(".card")[0]; // DOM element
+    const blank = $(card).find(".blank");
 
-    if (!blank.hasClass("correct") && !blank.hasClass("wrong")) {
+    if (!answeredCards.has(card)) {
+      answeredCards.add(card);
       blank.text(userChoice);
+
       if (userChoice === correctAnswer) {
         blank.addClass("correct");
         correct++;
         correctSound.play();
         gsap.fromTo(
           blank,
-          {
-            scale: 1,
-          },
+          { scale: 1 },
           {
             scale: 1.2,
             backgroundColor: "#c8e6c9",
@@ -124,15 +128,16 @@ $(document).ready(function () {
         wrong++;
         wrongSound.play();
       }
+
       updateProgress();
     }
   });
 
-  // Handle reset
   $("#reset").on("click", function () {
     $(".blank").text("_______").removeClass("correct wrong");
     correct = 0;
     wrong = 0;
+    answeredCards.clear();
     updateProgress();
     resetSound.play();
   });
