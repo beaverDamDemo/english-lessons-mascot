@@ -1,5 +1,6 @@
 const lessons = new Map();
 const answeredCards = new Set();
+let currentLessonKey = null;
 
 function animateCards() {
   const cards = $("#lesson-container .card").toArray();
@@ -11,6 +12,15 @@ function animateCards() {
     ease: "power2.out",
     clearProps: "opacity,transform",
   });
+}
+
+function unlockLessonBadge(lessonId) {
+  $(`[data-badge="${lessonId}"]`).addClass("earned").text("🪙");
+}
+
+function unlockStreakBadge(streakType) {
+  const icon = streakType === "streak5" ? "🔥" : "🏅";
+  $(`[data-badge="${streakType}"]`).addClass("earned").text(icon);
 }
 
 $(document).ready(function () {
@@ -25,6 +35,13 @@ $(document).ready(function () {
     .catch((err) => {
       console.error("Failed to load lessons:", err);
     });
+
+  $(".lesson-btn").each(function () {
+    const lesson = $(this).data("lesson");
+    if (lesson !== "lesson1") {
+      $(this).prop("disabled", true);
+    }
+  });
 
   $("#start-button").on("click", function () {
     $("#mascot-overlay").fadeOut(500);
@@ -55,6 +72,7 @@ $(document).ready(function () {
   const happyBlipSound = document.getElementById("sound-happy-blip");
 
   function loadLesson(lessonKey) {
+    currentLessonKey = lessonKey; // ✅ Track current lesson
     const lesson = lessons.get(lessonKey);
     if (!lesson) return;
 
@@ -254,6 +272,12 @@ $(document).ready(function () {
     );
 
     if (correct === total && total > 0) {
+      unlockLessonBadge(currentLessonKey);
+      const currentIndex = parseInt(currentLessonKey.replace("lesson", ""));
+      const nextLessonKey = "lesson" + (currentIndex + 1);
+      if (lessons.has(nextLessonKey)) {
+        $(`[data-lesson="${nextLessonKey}"]`).prop("disabled", false);
+      }
       celebrateSound.play();
       $("#completion-badge").fadeIn();
 

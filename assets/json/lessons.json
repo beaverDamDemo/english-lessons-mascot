@@ -26,8 +26,8 @@
     ]
   },
   "lesson2": {
-    "topic": "he / she / his / her",
-    "options": ["he", "she", "his", "her"],
+    "topic": "he / she / his / her / him",
+    "options": ["he", "she", "his", "her", "him"],
     "examples": [
       "_______ is my brother and he plays guitar.|he",
       "_______ is my sister and she loves painting.|she",
