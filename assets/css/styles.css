@@ -1,23 +1,36 @@
+/* =======================
+   Root variables
+======================= */
 :root {
   --text-dark: #333;
   --text-accent: #4a2fbd;
   --white: #fff;
 
+  /* Lesson 1 */
   --lesson1-bg-top: #fceabb;
   --lesson1-bg-bottom: #f8b500;
   --lesson1-card: #fff8e1;
   --lesson1-accent: #ffcc70;
+  --progress1-start: #f8b500;
+  --progress1-end: #ffcc70;
 
+  /* Lesson 2 */
   --lesson2-bg-top: #bbdefb;
   --lesson2-bg-bottom: #64b5f6;
   --lesson2-card: #e3f2fd;
   --lesson2-accent: #42a5f5;
+  --progress2-start: #42a5f5;
+  --progress2-end: #64b5f6;
 
+  /* Lesson 3 */
   --lesson3-bg-top: #e1f5fe;
   --lesson3-bg-bottom: #81d4fa;
   --lesson3-card: #e0f7fa;
   --lesson3-accent: #4fc3f7;
+  --progress3-start: #4fc3f7;
+  --progress3-end: #81d4fa;
 
+  /* Lesson 4 */
   --lesson4-bg-top: #f3e5f5;
   --lesson4-bg-bottom: #ce93d8;
   --lesson4-card: #f8eafc;
@@ -25,6 +38,7 @@
   --progress4-start: #ba68c8;
   --progress4-end: #ab47bc;
 
+  /* Lesson 5 */
   --lesson5-bg-top: #e0f7e9;
   --lesson5-bg-bottom: #80cbc4;
   --lesson5-card: #e0f2f1;
@@ -32,43 +46,44 @@
   --progress5-start: #26a69a;
   --progress5-end: #00796b;
 
+  /* Feedback / Buttons */
   --correct-bg: #c8e6c9;
   --correct-text: #2e7d32;
   --wrong-bg: #ffcdd2;
   --wrong-text: #c62828;
 
-  --btn-green-start: #66a06b; /* was #81c784 */
-  --btn-green-end: #519f5a; /* was #66bb6a */
+  --btn-green-start: #66a06b;
+  --btn-green-end: #519f5a;
   --btn-green-hover: #388e3c;
-  --btn-green-selected: #a5d6a7; /* light green */
-  --btn-green-selected-border: #81c784; /* slightly darker border */
+  --btn-green-selected: #a5d6a7;
+  --btn-green-selected-border: #81c784;
+}
 
-  --progress1-start: #f8b500;
-  --progress1-end: #ffcc70;
-
-  --progress2-start: #42a5f5;
-  --progress2-end: #64b5f6;
-
-  --progress3-start: #4fc3f7;
-  --progress3-end: #81d4fa;
-
-  --lesson1-accent: #ffcc70;
-  --lesson2-accent: #42a5f5;
-  --lesson3-accent: #4fc3f7;
-  --lesson4-accent: #ba68c8;
-  --lesson5-accent: #26a69a;
+/* =======================
+   Base layout
+======================= */
+* {
+  box-sizing: border-box;
 }
 body {
   margin: 0;
   font-family: "Baloo 2", sans-serif;
+  color: var(--text-dark);
   background: linear-gradient(
     to bottom,
     var(--lesson1-bg-top),
     var(--lesson1-bg-bottom)
   );
-  color: var(--text-dark);
+}
+.container {
+  max-width: 480px;
+  margin: auto;
+  padding: 20px 20px 80px;
 }
 
+/* =======================
+   Lesson background modifiers
+======================= */
 body.lesson1-bg {
   background: linear-gradient(
     to bottom,
@@ -105,43 +120,67 @@ body.lesson5-bg {
   );
 }
 
-.lesson5-bg .card {
-  background: var(--lesson5-card);
-}
-
-.container {
-  padding: 20px;
-  max-width: 480px;
-  margin: auto;
-  padding-bottom: 80px;
-}
-
+/* =======================
+   Headings / small utilities
+======================= */
 h1,
 h2 {
   text-align: center;
   color: var(--text-accent);
+  margin: 0 0 12px 0;
+}
+.start-message {
+  text-align: center;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 12px;
+  background: #fff3cd;
+  color: #856404;
+  margin-bottom: 20px;
 }
 
-.card {
+/* =======================
+   Lesson switcher & buttons
+======================= */
+.lesson-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
   border-radius: 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  transition: transform 0.3s ease;
-  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.lesson-btn {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #ffffffcc;
+  color: var(--text-dark);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.28s ease;
+}
+.lesson-btn:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+.lesson-btn.active {
+  background: var(--text-accent);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.lesson-btn:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
 }
 
-.lesson1-bg .card {
-  background: var(--lesson1-card);
-}
-.lesson2-bg .card {
-  background: var(--lesson2-card);
-}
-.lesson3-bg .card {
-  background: var(--lesson3-card);
-}
-
+/* lesson-specific lesson-btn visuals */
 .lesson1-bg .lesson-btn[data-lesson="lesson1"] {
   background: linear-gradient(to right, var(--lesson1-bg-bottom), #fdd835);
   color: var(--white);
@@ -156,15 +195,199 @@ h2 {
 }
 .lesson4-bg .lesson-btn[data-lesson="lesson4"] {
   background: linear-gradient(to right, var(--lesson4-accent), #9c27b0);
-  color: #fff;
+  color: var(--white);
 }
 .lesson5-bg .lesson-btn[data-lesson="lesson5"] {
   background: linear-gradient(to right, var(--lesson5-accent), #009688);
-  color: #fff;
+  color: var(--white);
 }
 
+/* =======================
+   Cards / question layout
+======================= */
+.card {
+  background: var(--lesson1-card);
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  transition: transform 0.28s ease;
+  position: relative;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.lesson2-bg .card {
+  background: var(--lesson2-card);
+}
+.lesson3-bg .card {
+  background: var(--lesson3-card);
+}
 .lesson4-bg .card {
   background: var(--lesson4-card);
+}
+.lesson5-bg .card {
+  background: var(--lesson5-card);
+}
+
+.card .question {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-family: "Comic Sans MS", cursive;
+  color: var(--text-dark);
+}
+
+/* options */
+.options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.option-btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    var(--btn-green-start),
+    var(--btn-green-end)
+  );
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.18s ease, background 0.22s ease;
+}
+.option-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(
+    to right,
+    var(--btn-green-end),
+    var(--btn-green-hover)
+  );
+}
+.option-btn.selected {
+  background: var(--btn-green-selected);
+  border: 2px solid var(--btn-green-selected-border);
+  color: var(--text-dark);
+}
+
+/* =======================
+   Feedback badges / blanks
+======================= */
+.blank {
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: all 0.24s ease;
+  color: #ff4d4d;
+  background: #fff3cd;
+}
+.blank.correct {
+  background: var(--correct-bg);
+  color: var(--correct-text);
+}
+.blank.wrong {
+  background: var(--wrong-bg);
+  color: var(--wrong-text);
+}
+.blank.revealed {
+  animation: pop 0.36s ease;
+}
+
+/* small animation */
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* reveal button */
+.reveal {
+  background: #ffcc70;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.reveal:hover {
+  background: #f8b500;
+}
+.reveal.disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =======================
+   Progress area
+======================= */
+.progress-container {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(to right, #ffffffcc, #f9f9f9cc);
+  backdrop-filter: blur(12px);
+  border-radius: 16px 16px 0 0;
+  padding: 18px 20px 14px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+.progress-bar {
+  width: 100%;
+  max-width: 400px;
+  height: 20px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px auto;
+}
+.progress-fill {
+  height: 100%;
+  width: 0;
+  transition: width 0.5s ease, background 0.3s ease;
+  background: linear-gradient(to right, #4caf50, #8bc34a);
+  border-radius: 10px;
+}
+
+/* lesson-specific progress fills */
+.lesson1-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress1-start),
+    var(--progress1-end)
+  );
+}
+.lesson2-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress2-start),
+    var(--progress2-end)
+  );
+}
+.lesson3-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress3-start),
+    var(--progress3-end)
+  );
 }
 .lesson4-bg .progress-fill {
   background: linear-gradient(
@@ -181,192 +404,31 @@ h2 {
   );
 }
 
-.card:hover {
-  transform: scale(1.02);
-}
-
-.card .question {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: var(--text-dark);
-  font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-.reveal {
-  background: #ffcc70;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.reveal:hover {
-  background: #f8b500;
-}
-.reveal.disabled {
-  background: #ccc;
-  color: #666;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.answer {
-  font-size: 1.2em;
-  color: #4a2fbd;
-  margin-top: 10px;
-  display: none;
-}
-.blank {
-  font-weight: bold;
-  color: #ff4d4d;
-  background: #fff3cd;
-  padding: 2px 6px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.blank.correct {
-  background: var(--correct-bg);
-  color: var(--correct-text);
-  padding: 2px 6px;
-  border-radius: 6px;
-}
-
-.blank.wrong {
-  background: var(--wrong-bg);
-  color: var(--wrong-text);
-  padding: 2px 6px;
-  border-radius: 6px;
-}
-
-.blank.revealed {
-  animation: pop 0.4s ease;
-}
-@keyframes pop {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.reset-btn {
-  display: block;
-  margin: 30px auto;
-  padding: 12px 20px;
-  font-size: 1em;
-  background: var(--text-accent);
-  color: var(--white);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease;
-}
-
-.reset-btn:hover {
-  background: #6b4ce3;
-}
-.progress-container {
-  display: none; /* hidden until lesson starts */
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-  background: linear-gradient(to right, #ffffffcc, #f9f9f9cc);
-  backdrop-filter: blur(12px);
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
-  padding: 18px 20px 14px;
-  text-align: center;
-  font-size: 1em;
-  font-weight: 500;
-  color: var(--text-dark);
-  z-index: 100;
-  transition: all 0.3s ease;
-  font-family: "Baloo 2", cursive;
-}
-
-.progress-bar {
-  width: 100%;
-  max-width: 400px;
-  height: 20px;
-  background: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 10px auto;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(to right, #4caf50, #8bc34a);
-  transition: width 0.5s ease;
-  transition: width 0.5s ease, background 0.3s ease;
-  border-radius: 10px;
-}
-
-.lesson1-bg .progress-fill {
-  background: linear-gradient(
-    to right,
-    var(--progress1-start),
-    var(--progress1-end)
-  );
-}
-
-.lesson2-bg .progress-fill {
-  background: linear-gradient(
-    to right,
-    var(--progress2-start),
-    var(--progress2-end)
-  );
-}
-
-.lesson3-bg .progress-fill {
-  background: linear-gradient(
-    to right,
-    var(--progress3-start),
-    var(--progress3-end)
-  );
-}
-
 .progress-text {
   margin-top: 8px;
-  font-size: 1em;
   font-weight: 600;
   color: var(--text-accent);
-  letter-spacing: 0.5px;
 }
 
+/* =======================
+   Reference bar (top)
+======================= */
 .reference-bar {
   position: sticky;
   top: 0;
+  padding: 12px 20px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--white);
   background: linear-gradient(
     to right,
     var(--lesson1-accent),
     var(--lesson1-bg-bottom)
   );
-  color: var(--white);
-  padding: 12px 20px;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-align: center;
-  border-bottom: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   z-index: 10;
-  transition: background 0.3s ease;
+  transition: background 0.28s ease;
 }
 .lesson2-bg .reference-bar {
   background: linear-gradient(
@@ -389,362 +451,52 @@ h2 {
     var(--lesson4-bg-bottom)
   );
 }
-
-.mark {
-  margin: 5px 5px 0 0;
-  padding: 8px 12px;
-  font-size: 0.9em;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.mark.correct {
-  background: var(--correct-bg);
-  color: var(--correct-text);
-}
-
-.mark.wrong {
-  background: var(--wrong-bg);
-  color: var(--wrong-text);
-}
-.options {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.option-btn {
-  padding: 10px 16px;
-  margin: 6px;
-  font-size: 1em;
-  border: none;
-  border-radius: 10px;
+.lesson5-bg .reference-bar {
   background: linear-gradient(
     to right,
-    var(--btn-green-start),
-    var(--btn-green-end)
-  );
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.option-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(
-    to right,
-    var(--btn-green-end),
-    var(--btn-green-hover)
+    var(--lesson5-accent),
+    var(--lesson5-bg-bottom)
   );
 }
 
-.option-btn.selected {
-  background: var(--btn-green-selected);
-  border-color: var(--btn-green-selected-border);
-}
-
-.lesson-switcher {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(6px);
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  max-width: 400px;
-  transition: background 0.3s ease;
-}
-
-.lesson-btn {
-  width: 100%;
-  text-align: left;
-  padding: 12px 18px;
-  font-size: 1em;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  background: #ffffffcc;
-  color: var(--text-dark);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.lesson-btn:hover {
-  transform: translateY(-2px);
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.lesson-btn.active {
-  background: var(--text-accent);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-.lesson-btn:disabled {
-  cursor: default;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-/* Remove hover effects for disabled buttons */
-.lesson-btn:disabled:hover {
-  background: none;
-  color: inherit;
-  box-shadow: none;
-  transform: none;
-}
-
-.lesson-label {
-  font-weight: bold;
-  color: #333;
-  margin-right: 6px;
-  font-size: 1.05em;
-  display: inline-block;
-}
-
-.start-message {
-  text-align: center;
-  font-size: 1.2em;
-  font-weight: bold;
-  padding: 15px;
-  margin-bottom: 20px;
-  background: #fff3cd;
-  color: #856404;
-  border: 2px solid #ffeeba;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.mascot-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #fffde7, #ffe082);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  animation: fadeIn 0.6s ease;
-}
-
-.mascot-box {
-  text-align: center;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  max-width: 400px;
-  position: relative;
-}
-.mascot-box img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: 12px;
-}
-.mascot-box img {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-#start-button {
-  font-size: 1.5em;
-  padding: 21px 0;
-  background: linear-gradient(to right, #fe9612, #fe7f00);
-  border: none;
-  border-radius: 12px;
-  color: #fff;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transform: translateX(-50%);
-  position: absolute;
-  left: 50%;
-  top: 507px;
-  width: 270px;
-}
-#start-button:hover {
-  background: linear-gradient(to right, #ffb347, #ff7f50);
-  transform: translateX(-50%) scale(1.05) rotate(-1deg);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
-#start-button:hover {
-  animation: bounce 0.4s ease;
-}
-
-@keyframes bounce {
-  0% {
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.08);
-  }
-  100% {
-    transform: translateX(-50%) scale(1.05);
-  }
-}
-
-#effect-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-}
-
-@keyframes pop {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-.completion-badge {
-  display: none;
-  margin-top: 12px;
-  font-size: 1.1em;
-  font-weight: bold;
-  color: #2e7d32;
-  background: linear-gradient(to right, #c8e6c9, #a5d6a7);
-  padding: 10px 18px;
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  animation: badgePop 0.5s ease;
-}
-
-@keyframes badgePop {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.toast {
-  display: none;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff3cd;
-  color: #856404;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 999;
-}
-.badge-unlocked {
-  display: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, #ffd700, #ff9800, #ffca28);
-  color: #fff;
-  padding: 1.2rem 2.5rem;
-  border-radius: 16px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.3);
-  z-index: 999;
-  overflow: hidden;
-}
-
-/* ✨ Sparkle overlay */
-.badge-unlocked::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.3) 1px,
-    transparent 1px
-  );
-  background-size: 20px 20px;
-  pointer-events: none;
-  animation: sparkleShift 3s linear infinite;
-}
-
-@keyframes sparkleShift {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100px 100px;
-  }
-}
-
+/* =======================
+   Badges (lesson + streak)
+======================= */
 .badge-display {
   margin-top: 1.5rem;
   text-align: center;
 }
-
-.badge-display h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: var(--text-accent);
-}
-
-/* Lesson badges row */
-.badge-row.lesson-badges {
+.badge-row {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .badge-slot {
   width: 60px;
   height: 60px;
-  background-color: #eee;
   border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  background: #eee;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
+  font-size: 1.4rem;
+  transition: transform 0.24s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
-
 .badge-slot.earned {
-  color: white;
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.35);
 }
 .badge-slot.earned:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  transform: scale(1.14);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
 }
 
-/* Dynamic lesson-based badge colors */
+/* lesson-mapped earned classes (use JS to add e.g. "lesson1-earned") */
 .badge-slot.lesson1-earned {
   background: linear-gradient(
     135deg,
@@ -781,31 +533,132 @@ h2 {
   );
 }
 
-/* Streak badges row */
-.badge-row.streak-badges {
-  display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-}
-
+/* streak medals */
 .medal-slot {
   width: 40px;
   height: 60px;
   border-radius: 8px;
-  box-shadow: none;
-  background-color: transparent; /* 👈 No background when empty */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  color: #aaa; /* Optional: faded color for placeholder icon or empty state */
+  color: #aaa;
 }
-
-/* When earned */
 .medal-slot.earned {
   background: linear-gradient(135deg, #ff9800, #ff5722);
-  color: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* =======================
+   Mascot / start overlay
+======================= */
+.mascot-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #fffde7, #ffe082);
+  z-index: 10000;
+}
+.mascot-box {
+  max-width: 400px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+.mascot-box img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* start button */
+#start-button {
+  font-size: 1.5rem;
+  padding: 20px 22px;
+  border-radius: 12px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(to right, #fe9612, #fe7f00);
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 26px;
+  width: 270px;
+}
+#start-button:hover {
+  transform: translateX(-50%) scale(1.04) rotate(-1deg);
+  background: linear-gradient(to right, #ffb347, #ff7f50);
+}
+
+/* canvas / effects */
+#effect-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+}
+
+/* small helpers */
+.reset-btn {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 20px;
+  background: var(--text-accent);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+.reset-btn:hover {
+  background: #6b4ce3;
+}
+
+.toast {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff3cd;
+  color: #856404;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 999;
+  font-weight: 700;
+}
+.completion-badge {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: linear-gradient(to right, var(--correct-bg), #a5d6a7);
+  color: var(--correct-text);
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  animation: badgePop 0.48s ease;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
