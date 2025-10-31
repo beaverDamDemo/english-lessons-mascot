@@ -27,9 +27,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/debug-panel.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script defer src="assets/js/script.js"></script>
     <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script defer src="assets/js/script.js"></script>
+    <script defer src="assets/js/debug-panel.js"></script>
     <audio
       id="sound-correct"
       src="assets/audio/correct.mp3"
@@ -58,6 +60,17 @@
 
     <div class="container">
       <div id="badge-display" class="badge-display">
+        <div class="debug-panel">
+          <h3>🛠 Debug Controls</h3>
+          <button onclick="markAllCorrect()">✅ Mark All Correct</button>
+          <button onclick="triggerStreak(5)">🔥 Trigger 5-Streak</button>
+          <button onclick="triggerStreak(10)">🏅 Trigger 10-Streak</button>
+          <button onclick="resetStreak()">🔄 Reset Streak</button>
+          <button onclick="unlockAllBadges()">🪙 Unlock All Badges</button>
+          <button onclick="resetBadges()">🧼 Reset Badges</button>
+        </div>
+        <div id="debug-toggle" title="Toggle debug panel">🛠️</div>
+
         <h3>🏅 Your Achievements</h3>
 
         <!-- Lesson badges row -->
@@ -70,10 +83,7 @@
         </div>
 
         <!-- Streak badges row -->
-        <div class="badge-row streak-badges">
-          <div class="medal-slot" data-badge="streak5"></div>
-          <div class="medal-slot" data-badge="streak10"></div>
-        </div>
+        <div class="badge-row streak-badges" id="streak-medals"></div>
       </div>
 
       <div class="lesson-switcher">

@@ -1,6 +1,8 @@
 const lessons = new Map();
 const answeredCards = new Set();
 let currentLessonKey = null;
+const streakShort = 5;
+const streakLong = 10;
 
 function animateCards() {
   const cards = $("#lesson-container .card").toArray();
@@ -150,7 +152,7 @@ $(document).ready(function () {
         correct++;
 
         streak++;
-        if (streak === 5) {
+        if (streak === streakShort) {
           happyBlipSound.play();
 
           // 🎊 Streak confetti burst
@@ -176,13 +178,13 @@ $(document).ready(function () {
           });
 
           $("#streak-toast")
-            .text("🔥 5 in a row! You're on fire!")
+            .text(`🔥 ${streakShort} in a row! You're on fire!`)
             .fadeIn(300)
             .delay(1500)
             .fadeOut(500);
         }
 
-        if (streak === 10) {
+        if (streak === streakLong) {
           // 🏅 Badge unlock celebration
           happyBlipSound.play();
 
