@@ -40,18 +40,24 @@ function resetStreak() {
 }
 
 function unlockAllBadges() {
-  ["lesson1", "lesson2", "lesson3", "lesson4", "lesson5"].forEach(
-    (lessonId) => {
-      const badge = $(`[data-badge="${lessonId}"]`);
-      badge.addClass("earned").text("🪙").addClass(`${lessonId}-earned`);
-    }
-  );
+  [
+    "lesson1",
+    "lesson2",
+    "lesson3",
+    "lesson4",
+    "lesson5",
+    "lesson6",
+    "lesson7",
+  ].forEach((lessonId) => {
+    const badge = $(`[data-badge="${lessonId}"]`);
+    badge.addClass("earned").text("🪙").addClass(`${lessonId}-earned`);
+  });
 }
 
 function resetBadges() {
   $(".badge-slot")
     .removeClass(
-      "earned lesson1-earned lesson2-earned lesson3-earned lesson4-earned lesson5-earned"
+      "earned lesson1-earned lesson2-earned lesson3-earned lesson4-earned lesson5-earned lesson6-earned lesson7-earned"
     )
     .text("");
 }

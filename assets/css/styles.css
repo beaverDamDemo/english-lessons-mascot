@@ -46,6 +46,20 @@
   --progress5-start: #26a69a;
   --progress5-end: #00796b;
 
+  --lesson6-bg-top: #e0f2f1;
+  --lesson6-bg-bottom: #26a69a;
+  --lesson6-card: #e0f7e9;
+  --lesson6-accent: #ff7043;
+  --progress6-start: #26a69a;
+  --progress6-end: #ff7043;
+
+  --lesson7-bg-top: #ede7f6;
+  --lesson7-bg-bottom: #5c6bc0;
+  --lesson7-card: #f3e5f5;
+  --lesson7-accent: #7e57c2;
+  --progress7-start: #7e57c2;
+  --progress7-end: #5c6bc0;
+
   /* Feedback / Buttons */
   --correct-bg: #c8e6c9;
   --correct-text: #2e7d32;
@@ -117,6 +131,20 @@ body.lesson5-bg {
     to bottom,
     var(--lesson5-bg-top),
     var(--lesson5-bg-bottom)
+  );
+}
+body.lesson6-bg {
+  background: linear-gradient(
+    to bottom,
+    var(--lesson6-bg-top),
+    var(--lesson6-bg-bottom)
+  );
+}
+body.lesson7-bg {
+  background: linear-gradient(
+    to bottom,
+    var(--lesson7-bg-top),
+    var(--lesson7-bg-bottom)
   );
 }
 
@@ -201,6 +229,14 @@ h2 {
   background: linear-gradient(to right, var(--lesson5-accent), #009688);
   color: var(--white);
 }
+.lesson6-bg .lesson-btn[data-lesson="lesson6"] {
+  background: linear-gradient(to right, var(--lesson6-accent), #00796b);
+  color: var(--white);
+}
+.lesson7-bg .lesson-btn[data-lesson="lesson7"] {
+  background: linear-gradient(to right, var(--lesson7-accent), #00695c);
+  color: var(--white);
+}
 
 /* =======================
    Cards / question layout
@@ -230,7 +266,12 @@ h2 {
 .lesson5-bg .card {
   background: var(--lesson5-card);
 }
-
+.lesson6-bg .card {
+  background: var(--lesson6-card);
+}
+.lesson7-bg .card {
+  background: var(--lesson7-card);
+}
 .card .question {
   font-size: 1.1rem;
   font-weight: 700;
@@ -403,6 +444,20 @@ h2 {
     var(--progress5-end)
   );
 }
+.lesson6-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress6-start),
+    var(--progress6-end)
+  );
+}
+.lesson7-bg .progress-fill {
+  background: linear-gradient(
+    to right,
+    var(--progress7-start),
+    var(--progress7-end)
+  );
+}
 
 .progress-text {
   margin-top: 8px;
@@ -458,6 +513,20 @@ h2 {
     var(--lesson5-bg-bottom)
   );
 }
+.lesson6-bg .reference-bar {
+  background: linear-gradient(
+    to right,
+    var(--lesson6-accent),
+    var(--lesson6-bg-bottom)
+  );
+}
+.lesson7-bg .reference-bar {
+  background: linear-gradient(
+    to right,
+    var(--lesson7-accent),
+    var(--lesson7-bg-bottom)
+  );
+}
 
 /* =======================
    Badges (lesson + streak)
@@ -469,7 +538,7 @@ h2 {
 .badge-row {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 .badge-row.streak-badges {
@@ -537,7 +606,20 @@ h2 {
     var(--lesson5-bg-bottom)
   );
 }
-
+.badge-slot.lesson6-earned {
+  background: linear-gradient(
+    135deg,
+    var(--lesson6-accent),
+    var(--lesson6-bg-bottom)
+  );
+}
+.badge-slot.lesson7-earned {
+  background: linear-gradient(
+    135deg,
+    var(--lesson7-accent),
+    var(--lesson7-bg-bottom)
+  );
+}
 /* streak medals */
 .medal-slot {
   width: 40px;
