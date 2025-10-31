@@ -51,6 +51,12 @@
 
   --progress3-start: #4fc3f7;
   --progress3-end: #81d4fa;
+
+  --lesson1-accent: #ffcc70;
+  --lesson2-accent: #42a5f5;
+  --lesson3-accent: #4fc3f7;
+  --lesson4-accent: #ba68c8;
+  --lesson5-accent: #26a69a;
 }
 body {
   margin: 0;
@@ -728,9 +734,51 @@ h2 {
 }
 
 .badge-slot.earned {
-  background: linear-gradient(135deg, #ffd700, #ff9800);
   color: white;
   transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+.badge-slot.earned:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+/* Dynamic lesson-based badge colors */
+.badge-slot.lesson1-earned {
+  background: linear-gradient(
+    135deg,
+    var(--lesson1-accent),
+    var(--lesson1-bg-bottom)
+  );
+}
+.badge-slot.lesson2-earned {
+  background: linear-gradient(
+    135deg,
+    var(--lesson2-accent),
+    var(--lesson2-bg-bottom)
+  );
+}
+.badge-slot.lesson3-earned {
+  background: linear-gradient(
+    135deg,
+    var(--lesson3-accent),
+    var(--lesson3-bg-bottom)
+  );
+}
+.badge-slot.lesson4-earned {
+  background: linear-gradient(
+    135deg,
+    var(--lesson4-accent),
+    var(--lesson4-bg-bottom)
+  );
+}
+.badge-slot.lesson5-earned {
+  background: linear-gradient(
+    135deg,
+    var(--lesson5-accent),
+    var(--lesson5-bg-bottom)
+  );
 }
 
 /* Streak badges row */

@@ -15,7 +15,11 @@ function animateCards() {
 }
 
 function unlockLessonBadge(lessonId) {
-  $(`[data-badge="${lessonId}"]`).addClass("earned").text("🪙");
+  const badge = $(`[data-badge="${lessonId}"]`);
+  badge.addClass("earned").text("🪙");
+
+  // Add lesson-specific class
+  badge.addClass(`${lessonId}-earned`);
 }
 
 function unlockStreakBadge(streakType) {
@@ -364,4 +368,13 @@ $(document).ready(function () {
       loadLesson("lesson1");
     });
   });
+
+  // 🔧 DEBUG: Unlock all lesson badges
+  // ["lesson1", "lesson2", "lesson3", "lesson4", "lesson5"].forEach(
+  //   (lessonId) => {
+  //     const badge = $(`[data-badge="${lessonId}"]`);
+  //     badge.addClass("earned").text("🪙");
+  //     badge.addClass(`${lessonId}-earned`); // Apply lesson-specific color class
+  //   }
+  // );
 });
