@@ -16,12 +16,13 @@ function animateCards() {
   });
 }
 
-function unlockLessonBadge(lessonId) {
-  const badge = $(`[data-badge="${lessonId}"]`);
-  badge.addClass("earned").text("🪙");
+function unlockStreakBadge(streakType) {
+  const icon = streakType === "streak5" ? "🔥" : "🏅";
+  const medalContainer = $(".streak-badges"); // container for medals
 
-  // Add lesson-specific class
-  badge.addClass(`${lessonId}-earned`);
+  const medal = $("<div>").addClass("medal-slot earned").text(icon);
+
+  medalContainer.append(medal);
 }
 
 function unlockStreakBadge(streakType) {

@@ -63,7 +63,7 @@ function resetBadges() {
 }
 
 function resetStreakMedals() {
-  document.getElementById("streak-medals").innerHTML = "";
+  $(".streak-badges").empty();
 }
 
 $("#debug-toggle").on("click", function () {
