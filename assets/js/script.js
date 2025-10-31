@@ -46,13 +46,6 @@ $(document).ready(function () {
   $("#start-button").on("click", function () {
     $("#mascot-overlay").fadeOut(500);
   });
-  gsap.to("#start-button", {
-    scale: 1.05,
-    duration: 1,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
-  });
   gsap.from(".mascot-box img", {
     y: -20,
     scale: 0.9,
@@ -60,7 +53,21 @@ $(document).ready(function () {
     duration: 0.6,
     ease: "bounce.out",
   });
-
+  gsap.from("#start-button", {
+    y: -20,
+    scale: 0.9,
+    opacity: 0,
+    duration: 0.6,
+    ease: "bounce.out",
+  });
+  gsap.to("#start-button", {
+    scale: 1.05,
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+    delay: 0.7,
+    ease: "sine.inOut",
+  });
   let correct = 0;
   let wrong = 0;
   let streak = 0;
