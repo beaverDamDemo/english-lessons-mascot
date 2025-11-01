@@ -207,6 +207,10 @@ h2 {
   color: #666; /* Prevent hover text change */
   cursor: default; /* No pointer cursor */
 }
+.lesson-btn.highlight-next {
+  animation: pulseNext 1s ease-in-out 2;
+  border: 2px solid #ffcc00;
+}
 .lesson-btn:disabled {
   opacity: 0.6;
   pointer-events: none;
@@ -821,5 +825,48 @@ h2 {
   }
   100% {
     background-position: 100px 100px;
+  }
+}
+
+.next-lesson-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  z-index: 999;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* animation: slideDownFade 1.2s ease-out; */
+}
+
+/* @keyframes slideDownFade {
+  0% {
+    transform: translate(-50%, -20px);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+} */
+
+@keyframes pulseNext {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }

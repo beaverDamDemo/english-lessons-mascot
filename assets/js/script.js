@@ -61,8 +61,20 @@ function updateProgress() {
     const currentIndex = parseInt(currentLessonKey.replace("lesson", ""));
     const nextLessonKey = "lesson" + (currentIndex + 1);
     if (lessons.has(nextLessonKey)) {
-      $(`[data-lesson="${nextLessonKey}"]`).prop("disabled", false);
+      const nextButton = $(`[data-lesson="${nextLessonKey}"]`);
+      nextButton.prop("disabled", false);
+
+      // 🎯 Highlight next button briefly
+      nextButton.addClass("highlight-next");
+      setTimeout(() => nextButton.removeClass("highlight-next"), 2000);
+
+      // 🚀 Auto-load next lesson after short delay
+      setTimeout(() => {
+        nextButton.trigger("click");
+        showLessonTransition(nextLessonKey);
+      }, 1400);
     }
+
     celebrateSound.play();
     $("#completion-badge").fadeIn();
 
@@ -102,6 +114,30 @@ function updateProgress() {
   } else {
     $("#completion-badge").hide();
   }
+}
+
+function showLessonTransition(lessonKey) {
+  const topic = lessons.get(lessonKey)?.topic || "Next Lesson";
+  const toast = $(`
+    <div class="toast next-lesson-toast">
+      ✨ Now starting <strong>${lessonKey.toUpperCase()}</strong>: ${topic}
+    </div>
+  `);
+  $("body").append(toast);
+  toast.css("display", "block");
+
+  gsap.to(toast, {
+    opacity: 1,
+    duration: 0.3,
+    onComplete: () => {
+      gsap.to(toast, {
+        delay: 2.5,
+        opacity: 0,
+        duration: 0.6,
+        onComplete: () => toast.remove(),
+      });
+    },
+  });
 }
 
 $(document).ready(function () {
