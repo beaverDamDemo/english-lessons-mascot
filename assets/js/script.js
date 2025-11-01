@@ -3,6 +3,14 @@ const answeredCards = new Set();
 let currentLessonKey = null;
 const streakShort = 5;
 const streakLong = 10;
+let correct = 0;
+let wrong = 0;
+let streak = 0;
+const correctSound = document.getElementById("sound-correct");
+const wrongSound = document.getElementById("sound-wrong");
+const celebrateSound = document.getElementById("sound-celebrate");
+const resetSound = document.getElementById("sound-reset");
+const happyBlipSound = document.getElementById("sound-happy-blip");
 
 function animateCards() {
   const cards = $("#lesson-container .card").toArray();
@@ -16,6 +24,11 @@ function animateCards() {
   });
 }
 
+function unlockLessonBadge(lessonId) {
+  const badge = $(`[data-badge="${lessonId}"]`);
+  badge.addClass("earned").text("🪙");
+  badge.addClass(`${lessonId}-earned`);
+}
 function unlockStreakBadge(streakType) {
   const icon = streakType === "streak5" ? "🔥" : "🏅";
   const medalContainer = $(".streak-badges"); // container for medals
@@ -25,9 +38,66 @@ function unlockStreakBadge(streakType) {
   medalContainer.append(medal);
 }
 
-function unlockStreakBadge(streakType) {
-  const icon = streakType === "streak5" ? "🔥" : "🏅";
-  $(`[data-badge="${streakType}"]`).addClass("earned").text(icon);
+function updateProgress() {
+  const total = $(".card").length;
+  const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+  gsap.to(".progress-fill", {
+    width: percent + "%",
+    duration: 0.5,
+    ease: "power1.out",
+  });
+
+  $(".progress-text").text(
+    `Correct: ${correct} | Wrong: ${wrong} | Score: ${percent}%`
+  );
+
+  if (correct === total && total > 0) {
+    unlockLessonBadge(currentLessonKey);
+    const currentIndex = parseInt(currentLessonKey.replace("lesson", ""));
+    const nextLessonKey = "lesson" + (currentIndex + 1);
+    if (lessons.has(nextLessonKey)) {
+      $(`[data-lesson="${nextLessonKey}"]`).prop("disabled", false);
+    }
+    celebrateSound.play();
+    $("#completion-badge").fadeIn();
+
+    // 🎉 Confetti burst
+    confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ["#ffcc00", "#ff66cc", "#66ccff", "#99ff99"],
+    });
+
+    // ✨ Emoji trail
+    confetti({
+      particleCount: 50,
+      angle: 90,
+      spread: 60,
+      origin: { x: 0.5, y: 0.5 },
+      shapes: ["text"],
+      scalar: 1.4,
+      ticks: 180,
+      gravity: 0.3,
+      drift: 0.6,
+      text: ["🎉", "🌟", "🏆", "👏"],
+    });
+
+    // 🏅 Badge animation
+    gsap.fromTo(
+      "#completion-badge",
+      { scale: 0.8, opacity: 0 },
+      {
+        scale: 1.2,
+        opacity: 1,
+        duration: 0.6,
+        ease: "elastic.out(1, 0.5)",
+      }
+    );
+  } else {
+    $("#completion-badge").hide();
+  }
 }
 
 $(document).ready(function () {
@@ -37,22 +107,26 @@ $(document).ready(function () {
       return res.json();
     })
     .then((data) => {
-      Object.entries(data).forEach(([key, value]) => lessons.set(key, value));
+      Object.entries(data).forEach(([key, value], index) => {
+        lessons.set(key, value);
+        const button = $(`
+          <button class="lesson-btn" data-lesson="${key}">
+            <span class="lesson-label">Lesson ${index + 1}:</span> ${
+          value.topic
+        }
+          </button>
+        `);
+        if (key !== "lesson1") {
+          button.prop("disabled", true);
+        }
+
+        $(".lesson-switcher").append(button);
+      });
     })
     .catch((err) => {
       console.error("Failed to load lessons:", err);
     });
 
-  $(".lesson-btn").each(function () {
-    const lesson = $(this).data("lesson");
-    if (lesson !== "lesson1") {
-      $(this).prop("disabled", true);
-    }
-  });
-
-  $("#start-button").on("click", function () {
-    $("#mascot-overlay").fadeOut(500);
-  });
   gsap.from(".mascot-box img", {
     y: -20,
     scale: 0.9,
@@ -75,15 +149,6 @@ $(document).ready(function () {
     delay: 0.7,
     ease: "sine.inOut",
   });
-  let correct = 0;
-  let wrong = 0;
-  let streak = 0;
-
-  const correctSound = document.getElementById("sound-correct");
-  const wrongSound = document.getElementById("sound-wrong");
-  const celebrateSound = document.getElementById("sound-celebrate");
-  const resetSound = document.getElementById("sound-reset");
-  const happyBlipSound = document.getElementById("sound-happy-blip");
 
   function loadLesson(lessonKey) {
     currentLessonKey = lessonKey; // ✅ Track current lesson
@@ -130,6 +195,16 @@ $(document).ready(function () {
       ease: "back.out(1.7)",
     });
   }
+  $(".lesson-btn").each(function () {
+    const lesson = $(this).data("lesson");
+    if (lesson !== "lesson1") {
+      $(this).prop("disabled", true);
+    }
+  });
+
+  $("#start-button").on("click", function () {
+    $("#mascot-overlay").fadeOut(500);
+  });
 
   $("#lesson-container").on("click", ".option-btn", function () {
     const userChoice = $(this).data("choice");
@@ -271,74 +346,13 @@ $(document).ready(function () {
     resetSound.play();
   });
 
-  function updateProgress() {
-    const total = $(".card").length;
-    const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
-
-    gsap.to(".progress-fill", {
-      width: percent + "%",
-      duration: 0.5,
-      ease: "power1.out",
-    });
-
-    $(".progress-text").text(
-      `Correct: ${correct} | Wrong: ${wrong} | Score: ${percent}%`
-    );
-
-    if (correct === total && total > 0) {
-      unlockLessonBadge(currentLessonKey);
-      const currentIndex = parseInt(currentLessonKey.replace("lesson", ""));
-      const nextLessonKey = "lesson" + (currentIndex + 1);
-      if (lessons.has(nextLessonKey)) {
-        $(`[data-lesson="${nextLessonKey}"]`).prop("disabled", false);
-      }
-      celebrateSound.play();
-      $("#completion-badge").fadeIn();
-
-      // 🎉 Confetti burst
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ["#ffcc00", "#ff66cc", "#66ccff", "#99ff99"],
-      });
-
-      // ✨ Emoji trail
-      confetti({
-        particleCount: 50,
-        angle: 90,
-        spread: 60,
-        origin: { x: 0.5, y: 0.5 },
-        shapes: ["text"],
-        scalar: 1.4,
-        ticks: 180,
-        gravity: 0.3,
-        drift: 0.6,
-        text: ["🎉", "🌟", "🏆", "👏"],
-      });
-
-      // 🏅 Badge animation
-      gsap.fromTo(
-        "#completion-badge",
-        { scale: 0.8, opacity: 0 },
-        {
-          scale: 1.2,
-          opacity: 1,
-          duration: 0.6,
-          ease: "elastic.out(1, 0.5)",
-        }
-      );
-    } else {
-      $("#completion-badge").hide();
-    }
-  }
-
-  $(".lesson-btn").on("click", function () {
+  $(".lesson-switcher").on("click", ".lesson-btn", function () {
     $("#start-message").hide();
     $(".lesson-btn").removeClass("active");
     $(this).addClass("active");
+
     const lessonKey = $(this).data("lesson");
-    $(".progress-container").fadeIn(300); // ✅ Ensure it's visible
+    $(".progress-container").fadeIn(300);
     loadLesson(lessonKey);
   });
 
@@ -371,13 +385,4 @@ $(document).ready(function () {
       loadLesson("lesson1");
     });
   });
-
-  // 🔧 DEBUG: Unlock all lesson badges
-  // ["lesson1", "lesson2", "lesson3", "lesson4", "lesson5"].forEach(
-  //   (lessonId) => {
-  //     const badge = $(`[data-badge="${lessonId}"]`);
-  //     badge.addClass("earned").text("🪙");
-  //     badge.addClass(`${lessonId}-earned`); // Apply lesson-specific color class
-  //   }
-  // );
 });
