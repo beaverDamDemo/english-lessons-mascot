@@ -24,11 +24,15 @@ function animateCards() {
   });
 }
 
-function unlockLessonBadge(lessonId) {
-  const badge = $(`[data-badge="${lessonId}"]`);
-  badge.addClass("earned").text("🪙");
-  badge.addClass(`${lessonId}-earned`);
+function unlockLessonBadge(lessonKey) {
+  const badge = $(`[data-badge="${lessonKey}"]`);
+  badge.addClass("earned").addClass(`${lessonKey}-earned`);
+
+  // Inject icon only when earned
+  const iconPath = `assets/images/${lessonKey}.svg`;
+  badge.html(`<img src="${iconPath}" alt="${lessonKey} badge" />`);
 }
+
 function unlockStreakBadge(streakType) {
   const icon = streakType === "streak5" ? "🔥" : "🏅";
   const medalContainer = $(".streak-badges"); // container for medals

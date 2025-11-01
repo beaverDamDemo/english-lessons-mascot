@@ -49,8 +49,7 @@ function unlockAllBadges() {
     "lesson6",
     "lesson7",
   ].forEach((lessonId) => {
-    const badge = $(`[data-badge="${lessonId}"]`);
-    badge.addClass("earned").text("🪙").addClass(`${lessonId}-earned`);
+    unlockLessonBadge(lessonId);
   });
 }
 

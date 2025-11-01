@@ -565,6 +565,15 @@ h2 {
   transition: transform 0.24s ease, box-shadow 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
+.badge-slot img {
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+.badge-slot.earned img {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+}
+
 .badge-slot.earned {
   color: #fff;
   transform: scale(1.08);
