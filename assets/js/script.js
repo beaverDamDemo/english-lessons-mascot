@@ -128,10 +128,11 @@ function showLessonTransition(lessonKey) {
 
   gsap.to(toast, {
     opacity: 1,
-    duration: 0.3,
+    duration: 1.6,
+    y: 400,
     onComplete: () => {
       gsap.to(toast, {
-        delay: 2.5,
+        delay: 1.2,
         opacity: 0,
         duration: 0.6,
         onComplete: () => toast.remove(),
