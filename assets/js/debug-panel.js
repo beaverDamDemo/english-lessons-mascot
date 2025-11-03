@@ -65,6 +65,10 @@ function resetStreakMedals() {
   $(".streak-badges").empty();
 }
 
+function resetFinalCelebration() {
+  $("#final-celebration").hide();
+}
+
 $("#debug-toggle").on("click", function () {
   $(".debug-panel").toggle();
 });

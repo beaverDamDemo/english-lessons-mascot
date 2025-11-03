@@ -27,6 +27,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/final-celebration.css" />
     <link rel="stylesheet" href="assets/css/debug-panel.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
@@ -49,6 +50,11 @@
       src="assets/audio/happy-blip.wav"
       preload="auto"
     ></audio>
+    <audio
+      id="sound-happy-ending"
+      src="assets/audio/happy-ending.wav"
+      preload="auto"
+    ></audio>
   </head>
   <body>
     <div id="mascot-overlay" class="mascot-overlay">
@@ -67,6 +73,12 @@
           <button onclick="triggerStreak(10)">🏅 Trigger 10-Streak</button>
           <button onclick="resetStreak()">🔄 Reset Streak</button>
           <button onclick="unlockAllBadges()">🪙 Unlock All Badges</button>
+          <button onclick="triggerFinalCelebration()">
+            🎊 Trigger Final Celebration
+          </button>
+          <button onclick="resetFinalCelebration()">
+            🧼 Reset Final Celebration
+          </button>
           <button onclick="resetBadges()">🧼 Reset Badges</button>
         </div>
         <div id="debug-toggle" title="Toggle debug panel">🛠️</div>
@@ -101,6 +113,13 @@
         <p class="progress-text">Correct: 0 | Wrong: 0 | Score: 0%</p>
         <div id="completion-badge" class="completion-badge">
           🎉 100% Complete!
+        </div>
+        <div id="final-celebration" class="final-celebration">
+          <h2 class="final-title">🏆 You’ve completed all lessons!</h2>
+          <p class="final-message">You're officially an English Master! 🎓</p>
+          <button id="restart-lessons" class="restart-btn">
+            🔄 Start Over
+          </button>
         </div>
       </div>
 

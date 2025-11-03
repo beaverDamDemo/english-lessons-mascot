@@ -11,6 +11,7 @@ const wrongSound = document.getElementById("sound-wrong");
 const celebrateSound = document.getElementById("sound-celebrate");
 const resetSound = document.getElementById("sound-reset");
 const happyBlipSound = document.getElementById("sound-happy-blip");
+const happyEndingSound = document.getElementById("sound-happy-ending");
 
 function animateCards() {
   const cards = $("#lesson-container .card").toArray();
@@ -111,6 +112,35 @@ function updateProgress() {
         ease: "elastic.out(1, 0.5)",
       }
     );
+
+    if (currentLessonKey === "lesson7") {
+      setTimeout(() => {
+        $("#final-celebration").fadeIn(600);
+        happyEndingSound.play();
+
+        // 🎊 Extra confetti burst
+        confetti({
+          particleCount: 150,
+          spread: 100,
+          origin: { y: 0.5 },
+          colors: ["#ffd700", "#ff66cc", "#66ccff", "#99ff99"],
+        });
+
+        // 🌟 Emoji trail
+        confetti({
+          particleCount: 60,
+          angle: 90,
+          spread: 70,
+          origin: { x: 0.5, y: 0.5 },
+          shapes: ["text"],
+          scalar: 1.6,
+          ticks: 200,
+          gravity: 0.25,
+          drift: 0.4,
+          text: ["🎉", "🌟", "🏆", "👏", "🦊"],
+        });
+      }, 2400);
+    }
   } else {
     $("#completion-badge").hide();
   }
@@ -138,6 +168,33 @@ function showLessonTransition(lessonKey) {
         onComplete: () => toast.remove(),
       });
     },
+  });
+}
+
+function triggerFinalCelebration() {
+  $("#final-celebration").fadeIn(600);
+  happyEndingSound.play();
+
+  // 🎊 Confetti burst
+  confetti({
+    particleCount: 150,
+    spread: 100,
+    origin: { y: 0.5 },
+    colors: ["#ffd700", "#ff66cc", "#66ccff", "#99ff99"],
+  });
+
+  // 🌟 Emoji trail
+  confetti({
+    particleCount: 60,
+    angle: 90,
+    spread: 70,
+    origin: { x: 0.5, y: 0.5 },
+    shapes: ["text"],
+    scalar: 1.6,
+    ticks: 200,
+    gravity: 0.25,
+    drift: 0.4,
+    text: ["🎉", "🌟", "🏆", "👏", "🦊"],
   });
 }
 
@@ -425,5 +482,12 @@ $(document).ready(function () {
       $(".progress-container").fadeIn(300); // ✅ Show progress bar
       loadLesson("lesson1");
     });
+  });
+
+  $("#restart-lessons").on("click", function () {
+    $("#final-celebration").fadeOut(300);
+    $(".lesson-btn").removeClass("active");
+    $(".lesson-btn").prop("disabled", true);
+    $(`[data-lesson="lesson1"]`).prop("disabled", false).trigger("click");
   });
 });
