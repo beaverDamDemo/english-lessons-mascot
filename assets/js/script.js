@@ -354,7 +354,10 @@ $(document).ready(function () {
     const { correct, wrong, streak } = progress.getStats();
 
     // Reset previous state
-    blank.removeClass("correct wrong").text(userChoice);
+    // Only reset if the answer hasn't already been marked correct
+    if (!wasCorrect) {
+      blank.removeClass("correct wrong").text(userChoice);
+    }
 
     // Remove highlight from other buttons
     $(card).find(".option-btn").removeClass("selected");
@@ -466,8 +469,6 @@ $(document).ready(function () {
           scale: 1.2,
           backgroundColor: "#c8e6c9",
           duration: 0.3,
-          yoyo: true,
-          repeat: 1,
           ease: "power1.inOut",
         }
       );
