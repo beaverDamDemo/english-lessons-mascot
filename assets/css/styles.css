@@ -324,6 +324,18 @@ h2 {
   border: 2px solid var(--btn-green-selected-border);
   color: var(--text-dark);
 }
+.option-btn:disabled {
+  cursor: auto;
+  box-shadow: none;
+  transform: none;
+  opacity: 0.6;
+}
+.option-btn:disabled:hover {
+  cursor: auto;
+  box-shadow: none;
+  transform: none;
+  opacity: 0.6;
+}
 
 /* =======================
    Feedback badges / blanks

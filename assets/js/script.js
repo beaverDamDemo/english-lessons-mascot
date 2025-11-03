@@ -3,15 +3,52 @@ const answeredCards = new Set();
 let currentLessonKey = null;
 const streakShort = 5;
 const streakLong = 10;
-let correct = 0;
-let wrong = 0;
-let streak = 0;
 const correctSound = document.getElementById("sound-correct");
 const wrongSound = document.getElementById("sound-wrong");
 const celebrateSound = document.getElementById("sound-celebrate");
 const resetSound = document.getElementById("sound-reset");
 const happyBlipSound = document.getElementById("sound-happy-blip");
 const happyEndingSound = document.getElementById("sound-happy-ending");
+
+function progressTracker() {
+  let correct = 0;
+  let wrong = 0;
+  let streak = 0;
+  return {
+    incrementCorrect: () => {
+      correct++;
+      streak++;
+    },
+    incrementWrong: () => {
+      wrong++;
+      streak = 0;
+    },
+    decreaseWrong: () => {
+      if (wrong > 0) wrong--;
+    },
+    adjustFromWrongToCorrect() {
+      if (wrong > 0) wrong--;
+      correct++;
+      streak++;
+    },
+    adjustFromCorrectToWrong() {
+      correct--;
+      wrong++;
+      streak = 0;
+    },
+    resetStreak() {
+      streak = 0;
+    },
+    reset() {
+      correct = 0;
+      wrong = 0;
+      streak = 0;
+    },
+    getStats() {
+      return { correct, wrong, streak };
+    },
+  };
+}
 
 function animateCards() {
   const cards = $("#lesson-container .card").toArray();
@@ -45,6 +82,7 @@ function unlockStreakBadge(streakType) {
 
 function updateProgress() {
   const total = $(".card").length;
+  const { correct, wrong, streak } = progress.getStats();
   const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
 
   gsap.to(".progress-fill", {
@@ -198,6 +236,8 @@ function triggerFinalCelebration() {
   });
 }
 
+const progress = progressTracker();
+
 $(document).ready(function () {
   fetch("./assets/json/lessons.json")
     .then((res) => {
@@ -258,8 +298,7 @@ $(document).ready(function () {
     $("body").removeClass().addClass(`${lessonKey}-bg`);
     $("#lesson-container").empty();
     $(".reference-bar").html(`<strong>Topic:</strong> ${topic}`);
-    correct = 0;
-    wrong = 0;
+    progress.reset();
     updateProgress();
 
     // Build cards first
@@ -312,6 +351,7 @@ $(document).ready(function () {
 
     const wasCorrect = blank.hasClass("correct");
     const wasWrong = blank.hasClass("wrong");
+    const { correct, wrong, streak } = progress.getStats();
 
     // Reset previous state
     blank.removeClass("correct wrong").text(userChoice);
@@ -323,9 +363,11 @@ $(document).ready(function () {
     if (userChoice === correctAnswer) {
       blank.addClass("correct");
       if (!wasCorrect) {
-        correct++;
-
-        streak++;
+        if (wasWrong) {
+          progress.adjustFromWrongToCorrect();
+        } else {
+          progress.incrementCorrect();
+        }
         if (streak === streakShort) {
           happyBlipSound.play();
 
@@ -405,11 +447,17 @@ $(document).ready(function () {
           });
 
           // Reset streak after badge
-          streak = 0;
+          progress.resetStreak();
         }
-
-        if (wasWrong) wrong--; // Adjust if switching from wrong to correct
       }
+
+      // 🔒 Disable all wrong buttons
+      $(card)
+        .find(".option-btn")
+        .each(function () {
+          $(this).prop("disabled", true);
+        });
+
       correctSound.play();
       gsap.fromTo(
         blank,
@@ -426,8 +474,11 @@ $(document).ready(function () {
     } else {
       blank.addClass("wrong");
       if (!wasWrong) {
-        wrong++;
-        if (wasCorrect) correct--; // Adjust if switching from correct to wrong
+        if (wasCorrect) {
+          progress.adjustFromCorrectToWrong();
+        } else {
+          progress.incrementWrong();
+        }
       }
       wrongSound.play();
     }
@@ -437,8 +488,7 @@ $(document).ready(function () {
 
   $("#reset").on("click", function () {
     $(".blank").text("_______").removeClass("correct wrong");
-    correct = 0;
-    wrong = 0;
+    progress.reset();
     answeredCards.clear();
     updateProgress();
     resetSound.play();
