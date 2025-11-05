@@ -2,6 +2,7 @@
   "lesson1": {
     "topic": "me / you / my / your",
     "options": ["me", "you", "my", "your"],
+    "help": "This lesson helps you talk about yourself and others in everyday situations. Use “me” when talking about yourself as the object (“Give it to me”), and “you” when talking to someone else. “My” shows something belongs to you (“my phone”), and “your” shows something belongs to the person you're talking to (“your keys”). Try using these in real life: “This is my bag. Is that your jacket?” Practice pointing to things and saying whose they are—it’s a great way to build confidence with basic conversation.,",
     "examples": [
       "She said to me: 'I like _______ because you're always kind to me.'|you",
       "She pointed to her book and said, 'This is _______ book, not yours.'|my",
@@ -18,6 +19,7 @@
   "lesson2": {
     "topic": "he / she / his / her",
     "options": ["he", "she", "his", "her"],
+    "help": "In this lesson, you’ll learn how to talk about other people and things. Use “he” for a man or boy, “she” for a woman or girl, and “it” for objects or animals (unless the animal has a name, then use “he” or “she”). For example: “He is my brother,” “She is a teacher,” “It is a cat.” Try describing people around you or things in your room. This helps you build sentences and describe the world clearly. Don’t worry if you mix them up—just keep practicing!",
     "examples": [
       "_______ is my brother and he plays guitar.|he",
       "_______ is my sister and she loves painting.|she",
@@ -34,6 +36,7 @@
   "lesson3": {
     "topic": "go / went / will go / is going",
     "options": ["go", "went", "will go", "is going"],
+    "help": "This lesson teaches you how to talk about groups. Use “we” when you include yourself (“We are friends”) and “they” when you talk about others (“They are at school”). “Our” shows something belongs to your group (“our house”), and “their” shows something belongs to another group (“their car”). Try talking about your family, friends, or classmates using these words. For example: “We love our dog,” or “They forgot their books.” These words are great for teamwork, storytelling, and everyday conversations.",
     "examples": [
       "Every weekday, I _______ to school by bike.|go",
       "Yesterday, she _______ to the market for fruit.|went",
@@ -50,6 +53,7 @@
   "lesson4": {
     "topic": "is / are / was / were",
     "options": ["is", "are", "was", "were"],
+    "help": "This lesson focuses on the verb “to be,” which is used all the time in English. Use “I am” for yourself, “you are” for the person you're talking to, “he/she/it is” for others, and “we/they are” for groups. For example: “I am happy,” “She is tired,” “They are ready.” These forms help you describe feelings, locations, and facts. Try making short sentences about yourself and others. This is one of the most useful tools for speaking clearly and confidently in English.",
     "examples": [
       "The dog _______ hungry right now.|is",
       "They _______ at the park yesterday afternoon.|were",
@@ -66,6 +70,7 @@
   "lesson5": {
     "topic": "Do / Does / Did / Are",
     "options": ["Do", "Does", "Did", "Are"],
+    "help": "Here you’ll learn how to point to things and describe where they are. Use “this” for one thing near you (“This is my pen”) and “that” for one thing far away (“That is your bag”). “These” is for multiple things near you, and “those” is for multiple things far away. Try pointing to objects around you and saying “this” or “that.” It’s a great way to practice describing your environment. These words are super helpful when shopping, giving directions, or showing things to others.",
     "examples": [
       "_______ you like pizza?|Do",
       "_______ she live near here with her parents?|Does",
@@ -82,6 +87,7 @@
   "lesson6": {
     "topic": "me / you / my / your",
     "options": ["me", "you", "my", "your"],
+    "help": "This lesson helps you express what someone is able or allowed to do. Use “can” to say someone is able to do something (“I can swim”) and “can’t” to say they are not (“She can’t drive”). You can also use “can” to ask for permission: “Can I go?” Practice by talking about your skills or asking friends what they can do. Try saying things like “I can cook,” or “Can you help me?” These words are essential for polite requests and everyday communication.",
     "examples": [
       "_______ dog loves chasing squirrels in your backyard every afternoon.|your",
       "_______ house has a blue door and white walls with ivy growing on the side.|my",
@@ -98,6 +104,7 @@
   "lesson7": {
     "topic": "he / she / his / her",
     "options": ["he", "she", "his", "her"],
+    "help": "This lesson teaches you how to ask questions and make negative sentences in the present tense. Use “do” with I/you/we/they and “does” with he/she/it. For example: “Do you like pizza?” or “Does she play tennis?” Use “don’t” and “doesn’t” to say no: “I don’t know,” “He doesn’t work here.” Practice by asking and answering simple questions about daily life. These words are key for conversations, interviews, and expressing opinions. The more you use them, the more natural they’ll feel.",
     "examples": [
       "Aunt Lisa teaches science. _______ is my aunt who teaches it.|she",
       "After the show, I gave the flowers to my aunt. I gave the flowers to _______ as a thank-you.|her",

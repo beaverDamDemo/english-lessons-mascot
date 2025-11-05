@@ -236,6 +236,11 @@ function triggerFinalCelebration() {
   });
 }
 
+function showLessonHelp(text) {
+  $("#help-text").text(text);
+  $("#lesson-help-modal").fadeIn(300);
+}
+
 const progress = progressTracker();
 
 $(document).ready(function () {
@@ -298,6 +303,16 @@ $(document).ready(function () {
     $("body").removeClass().addClass(`${lessonKey}-bg`);
     $("#lesson-container").empty();
     $(".reference-bar").html(`<strong>Topic:</strong> ${topic}`);
+    const helpText = lesson.help || "No help available for this lesson.";
+    const helpButton = $(`
+      <button class="help-btn" title="Show help for this lesson">❓ Help</button>
+    `);
+    $(".reference-bar").append(helpButton);
+
+    helpButton.on("click", () => {
+      showLessonHelp(helpText);
+    });
+
     progress.reset();
     updateProgress();
 
@@ -540,5 +555,9 @@ $(document).ready(function () {
     $(".lesson-btn").removeClass("active");
     $(".lesson-btn").prop("disabled", true);
     $(`[data-lesson="lesson1"]`).prop("disabled", false).trigger("click");
+  });
+
+  $(document).on("click", ".close-help", function () {
+    $("#lesson-help-modal").fadeOut(200);
   });
 });
