@@ -85,6 +85,15 @@ function updateProgress() {
   const { correct, wrong, streak } = progress.getStats();
   const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
 
+  const progressData = {
+    correct,
+    wrong,
+    streak,
+    currentLessonKey,
+    answeredCards: Array.from(answeredCards),
+  };
+  localStorage.setItem("userProgress", JSON.stringify(progressData));
+
   gsap.to(".progress-fill", {
     width: percent + "%",
     duration: 0.5,
@@ -269,6 +278,24 @@ $(document).ready(function () {
     .catch((err) => {
       console.error("Failed to load lessons:", err);
     });
+
+  const savedProgress = localStorage.getItem("userProgress");
+  if (savedProgress) {
+    const data = JSON.parse(savedProgress);
+    currentLessonKey = data.currentLessonKey;
+    answeredCards.clear();
+    data.answeredCards.forEach((card) => answeredCards.add(card));
+
+    progress.reset();
+    for (let i = 0; i < data.correct; i++) progress.incrementCorrect();
+    for (let i = 0; i < data.wrong; i++) progress.incrementWrong();
+
+    if (lessons.has(currentLessonKey)) {
+      loadLesson(currentLessonKey);
+      $(".lesson-btn").removeClass("active");
+      $(`[data-lesson="${currentLessonKey}"]`).addClass("active");
+    }
+  }
 
   gsap.from(".mascot-box img", {
     y: -20,
@@ -555,6 +582,17 @@ $(document).ready(function () {
     $(".lesson-btn").removeClass("active");
     $(".lesson-btn").prop("disabled", true);
     $(`[data-lesson="lesson1"]`).prop("disabled", false).trigger("click");
+  });
+
+  $("#reset-storage").on("click", function () {
+    localStorage.removeItem("userProgress");
+    progress.reset();
+    answeredCards.clear();
+    $(".blank").text("_______").removeClass("correct wrong");
+    $(".lesson-btn").removeClass("active");
+    $(`[data-lesson="lesson1"]`).prop("disabled", false).trigger("click");
+    $("#completion-badge").hide();
+    $("#final-celebration").hide();
   });
 
   $(document).on("click", ".close-help", function () {

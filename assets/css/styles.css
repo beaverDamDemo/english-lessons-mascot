@@ -755,6 +755,13 @@ h2 {
   background: #6b4ce3;
 }
 
+#reset-storage {
+  background: linear-gradient(to right, #f44336, #e53935);
+}
+#reset-storage:hover {
+  background: linear-gradient(to right, #df6765, #e53935);
+}
+
 .toast {
   display: none;
   position: fixed;
