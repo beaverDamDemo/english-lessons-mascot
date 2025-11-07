@@ -92,7 +92,7 @@ body {
 .container {
   max-width: 480px;
   margin: auto;
-  padding: 20px 20px 100px;
+  padding: 20px 20px 168px;
 }
 
 /* =======================
@@ -411,6 +411,11 @@ h2 {
   padding: 18px 20px 14px;
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
   z-index: 100;
+  #svg {
+    height: 72px;
+    display: flex;
+    justify-content: center;
+  }
 }
 .progress-bar {
   width: 100%;

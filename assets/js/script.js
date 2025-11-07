@@ -3,6 +3,8 @@ const answeredCards = new Set();
 let currentLessonKey = null;
 const streakShort = 5;
 const streakLong = 10;
+let svgFragment = null;
+const originalColors = new Map();
 const correctSound = document.getElementById("sound-correct");
 const wrongSound = document.getElementById("sound-wrong");
 const celebrateSound = document.getElementById("sound-celebrate");
@@ -250,9 +252,88 @@ function showLessonHelp(text) {
   $("#lesson-help-modal").fadeIn(300);
 }
 
+function loadLessonSVG(lessonKey) {
+  const lessonNumber = lessonKey.replace("lesson", "");
+  const svgPath = `assets/images/snap${lessonNumber}.svg`;
+  const svgContainer = Snap("#svg");
+  originalColors.clear(); // reset for new lesson
+
+  Snap.load(svgPath, function (loadedFragment) {
+    svgFragment = loadedFragment.select("svg") || loadedFragment;
+    if (!svgFragment) {
+      console.error(
+        "❌ Could not find a valid SVG element in the loaded fragment."
+      );
+      return;
+    }
+
+    svgContainer.selectAll("*").forEach((el) => el.remove());
+    svgContainer.append(svgFragment);
+
+    const allNodes = svgFragment.selectAll("*").items;
+
+    const filteredNodes = allNodes
+      .filter((el) => el.node.id && el.node.id.startsWith("part"))
+      .map((el) => {
+        const originalFill = el.node.getAttribute("fill");
+        el.attr({ fill: "#fff" }); // apply white
+        originalColors.set(el.node.id, {
+          originalFill,
+          currentFill: "#fff",
+        });
+      });
+  });
+}
+
 const progress = progressTracker();
 
 $(document).ready(function () {
+  // $("#mascot-overlay").fadeOut(600, function () {
+  //   $(".progress-container").fadeIn(300); // ✅ Show progress bar
+  //   loadLesson("lesson1");
+  // });
+  const svgContainer = Snap("#svg");
+
+  Snap.load("assets/images/snap1.svg", function (loadedFragment) {
+    svgFragment = loadedFragment.select("svg") || loadedFragment;
+
+    if (!svgFragment) {
+      console.error(
+        "❌ Could not find a valid SVG element in the loaded fragment."
+      );
+      return;
+    }
+
+    svgContainer.append(svgFragment);
+
+    const allNodes = svgFragment.selectAll("*").items;
+
+    const filteredNodes = allNodes
+      .filter((el) => el.node.id && el.node.id.startsWith("part"))
+      .map((el, i) => ({
+        index: i,
+        element: el,
+        nodeType: el.node.nodeName || undefined,
+        id: el.node.id || undefined,
+        fill: el.node.getAttribute("fill"),
+      }));
+
+    // console.table(filteredNodes);
+
+    filteredNodes.forEach((el) => {
+      const { element, fill } = el;
+
+      if (element.node.id) {
+        originalColors.set(element.node.id, {
+          originalFill: fill,
+          currentFill: "#fff", // initial override
+        });
+
+        if (fill) element.attr({ fill: "#fff" });
+      }
+    });
+  });
+
   fetch("./assets/json/lessons.json")
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
@@ -324,6 +405,8 @@ $(document).ready(function () {
     currentLessonKey = lessonKey; // ✅ Track current lesson
     const lesson = lessons.get(lessonKey);
     if (!lesson) return;
+
+    loadLessonSVG(lessonKey);
 
     const { topic, options, examples } = lesson;
 
@@ -406,6 +489,20 @@ $(document).ready(function () {
     $(this).addClass("selected");
 
     if (userChoice === correctAnswer) {
+      // Restore one SVG element's original color
+      const remaining = Array.from(originalColors.entries()).filter(
+        ([id, props]) => props.currentFill === "#fff"
+      );
+
+      if (remaining.length > 0) {
+        const [id, props] = remaining[0];
+        const el = svgFragment.select(`#${id}`);
+        if (el) {
+          el.attr({ fill: props.originalFill });
+          props.currentFill = props.originalFill; // update state
+        }
+      }
+
       blank.addClass("correct");
       if (!wasCorrect) {
         if (wasWrong) {

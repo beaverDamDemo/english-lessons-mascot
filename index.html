@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>English lessons</title>
+    <title>English Lessons for Beginners</title>
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -32,6 +32,13 @@
     <link rel="stylesheet" href="assets/css/debug-panel.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"
+      integrity="sha512-Gk+uNk8NWN235mIkS6B7/424TsDuPDaoAsUekJCKTWLKP6wlaPv+PBGfO7dbvZeibVPGW+mYidz0vL0XaWwz4w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script defer src="assets/js/script.js"></script>
     <script defer src="assets/js/debug-panel.js"></script>
     <audio
@@ -103,9 +110,7 @@
 
       <div class="lesson-switcher"></div>
 
-      <div class="reference-bar">
-        <strong>Topic:</strong> me / you / my / your
-      </div>
+      <div class="reference-bar"></div>
 
       <div id="lesson-container"></div>
 
@@ -121,6 +126,7 @@
       <button id="reset-storage" class="reset-btn">♻️ Reset Progress</button>
 
       <div class="progress-container">
+        <div id="svg"></div>
         <div class="progress-bar">
           <div class="progress-fill"></div>
         </div>

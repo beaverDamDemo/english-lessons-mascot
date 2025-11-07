@@ -1,0 +1,114 @@
+
+      <svg
+        viewBox="0 0 800 200"
+        xmlns="http://www.w3.org/2000/svg"
+        className="shadow-2xl rounded-lg"
+        width="300"
+      >
+        <rect
+          id="background"
+          x="0"
+          y="0"
+          width="800"
+          height="200"
+          fill="#e0f2fe"
+        />
+
+        <ellipse
+          id="part1"
+          cx="400"
+          cy="130"
+          rx="80"
+          ry="60"
+          fill="#92400e"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <circle
+          id="part2"
+          cx="400"
+          cy="80"
+          r="45"
+          fill="#a16207"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <path
+          id="part3"
+          d="M 365 50 L 355 25 L 375 45 Z"
+          fill="#78350f"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <path
+          id="part4"
+          d="M 435 50 L 445 25 L 425 45 Z"
+          fill="#78350f"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <circle
+          id="part5"
+          cx="385"
+          cy="75"
+          r="6"
+          fill="#65e7bcff"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <circle
+          id="part6"
+          cx="415"
+          cy="75"
+          r="6"
+          fill="#65e7bcff"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <ellipse
+          id="part7"
+          cx="400"
+          cy="90"
+          rx="4"
+          ry="6"
+          fill="#fcd5ce"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <path
+          id="part8"
+          d="M 480 120 Q 520 110, 540 140 Q 530 150, 510 145 Q 490 140, 480 120 Z"
+          fill="#b45309"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <ellipse
+          id="part9"
+          cx="340"
+          cy="165"
+          rx="18"
+          ry="12"
+          fill="#d97706"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+
+        <ellipse
+          id="part10"
+          cx="460"
+          cy="165"
+          rx="18"
+          ry="12"
+          fill="#d97706"
+          stroke="#000000"
+          strokeWidth="1"
+        />
+      </svg>
