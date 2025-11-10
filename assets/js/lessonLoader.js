@@ -80,26 +80,28 @@ export function loadLesson(lessonKey) {
 
   progress.reset();
   updateProgress();
+  const shuffledExamples = examples.sort(() => Math.random() - 0.5);
+  const limitedExamples = shuffledExamples.slice(0, 10);
 
   // Build cards
-  examples.forEach((item, index) => {
+  limitedExamples.forEach((item, index) => {
     const [sentence, answer] = item.split("|");
     const card = $(`
-      <div class="card">
-        <div class="options">
-          ${options
-            .map(
-              (opt) =>
-                `<button class="option-btn" data-answer="${answer}" data-choice="${opt}">${opt}</button>`
-            )
-            .join("")}
-        </div>
-        <p class="question">${index + 1}. ${sentence.replace(
+    <div class="card">
+      <div class="options">
+        ${options
+          .map(
+            (opt) =>
+              `<button class="option-btn" data-answer="${answer}" data-choice="${opt}">${opt}</button>`
+          )
+          .join("")}
+      </div>
+      <p class="question">${index + 1}. ${sentence.replace(
       "_______",
       '<span class="blank">_______</span>'
     )}</p>
-      </div>
-    `);
+    </div>
+  `);
     $("#lesson-container").append(card);
   });
 
