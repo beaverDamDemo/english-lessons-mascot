@@ -324,6 +324,16 @@ h2 {
   border: 2px solid var(--btn-green-selected-border);
   color: var(--text-dark);
 }
+
+/* Wrong answer styling when selected */
+.option-btn.selected.wrong-option {
+  background: linear-gradient(135deg, #ef5350, #e53935);
+  color: #fff;
+  border: 2px solid #c62828;
+  box-shadow: 0 0 0 2px rgba(239, 83, 80, 0.15),
+    0 4px 12px rgba(198, 40, 40, 0.25);
+  animation: wrongShake 0.5s ease-out;
+}
 .option-btn:disabled {
   cursor: auto;
   box-shadow: none;
@@ -335,6 +345,56 @@ h2 {
   box-shadow: none;
   transform: none;
   opacity: 0.6;
+}
+
+/* Highlight the correct option when revealed after a wrong answer */
+.option-btn.correct-option {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: #fff;
+  border: 2px solid #2e7d32;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15),
+    0 4px 12px rgba(46, 125, 50, 0.25);
+  position: relative;
+  transform: scale(1.05);
+  animation: correctPulse 0.6s ease-out;
+  font-weight: 700;
+}
+
+@keyframes correctPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.3),
+      0 2px 8px rgba(46, 125, 50, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0),
+      0 4px 12px rgba(46, 125, 50, 0.25);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15),
+      0 4px 12px rgba(46, 125, 50, 0.25);
+  }
+}
+
+@keyframes wrongShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
 }
 
 /* =======================

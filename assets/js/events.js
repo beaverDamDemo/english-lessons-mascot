@@ -40,14 +40,14 @@ export function initEventHandlers() {
     const card = $(this).closest(".card")[0];
     const blank = $(card).find(".blank");
 
-    const wasCorrect = blank.hasClass("correct");
-    const wasWrong = blank.hasClass("wrong");
-    const { correct, wrong, streak } = progress.getStats();
-
-    if (!wasCorrect) {
-      blank.removeClass("correct wrong").text(userChoice);
+    // If answer was already selected for this card, don't allow changes
+    if (blank.hasClass("correct") || blank.hasClass("wrong")) {
+      return;
     }
 
+    const { correct, wrong, streak } = progress.getStats();
+
+    blank.text(userChoice);
     $(card).find(".option-btn").removeClass("selected");
     $(this).addClass("selected");
 
@@ -82,89 +82,83 @@ export function initEventHandlers() {
       }
 
       blank.addClass("correct");
-      if (!wasCorrect) {
-        if (wasWrong) {
-          progress.adjustFromWrongToCorrect();
-        } else {
-          progress.incrementCorrect();
-        }
-        const { streak: updatedStreak } = progress.getStats();
-        if (updatedStreak === 5) {
-          document.getElementById("sound-happy-blip")?.play();
+      progress.incrementCorrect();
+      const { streak: updatedStreak } = progress.getStats();
+      if (updatedStreak === 5) {
+        document.getElementById("sound-happy-blip")?.play();
 
-          confetti({
-            particleCount: 80,
-            spread: 100,
-            origin: { y: 0.4 },
-            colors: ["#ffd700", "#ff69b4", "#00bcd4", "#8bc34a"],
-          });
+        confetti({
+          particleCount: 80,
+          spread: 100,
+          origin: { y: 0.4 },
+          colors: ["#ffd700", "#ff69b4", "#00bcd4", "#8bc34a"],
+        });
 
-          confetti({
-            particleCount: 40,
-            angle: 90,
-            spread: 70,
-            origin: { x: 0.5, y: 0.5 },
-            shapes: ["text"],
-            scalar: 1.6,
-            ticks: 200,
-            gravity: 0.25,
-            drift: 0.4,
-            text: ["🔥", "💯", "🎯", "👏"],
-          });
+        confetti({
+          particleCount: 40,
+          angle: 90,
+          spread: 70,
+          origin: { x: 0.5, y: 0.5 },
+          shapes: ["text"],
+          scalar: 1.6,
+          ticks: 200,
+          gravity: 0.25,
+          drift: 0.4,
+          text: ["🔥", "💯", "🎯", "👏"],
+        });
 
-          $("#streak-toast")
-            .text(`🔥 ${5} in a row! You're on fire!`)
-            .fadeIn(300)
-            .delay(1500)
-            .fadeOut(500);
-        }
+        $("#streak-toast")
+          .text(`🔥 ${5} in a row! You're on fire!`)
+          .fadeIn(300)
+          .delay(1500)
+          .fadeOut(500);
+      }
 
-        if (updatedStreak === 10) {
-          document.getElementById("sound-happy-blip")?.play();
+      if (updatedStreak === 10) {
+        document.getElementById("sound-happy-blip")?.play();
 
-          gsap.set("#streak-badge", {
-            display: "block",
-            opacity: 0.5,
-            scale: 0.8,
-          });
+        gsap.set("#streak-badge", {
+          display: "block",
+          opacity: 0.5,
+          scale: 0.8,
+        });
 
-          confetti({
-            particleCount: 40,
-            angle: 90,
-            spread: 60,
-            origin: { x: 0.5, y: 0.5 },
-            shapes: ["text"],
-            scalar: 1.4,
-            ticks: 180,
-            gravity: 0.3,
-            drift: 0.6,
-            text: ["✨", "🌟", "💫", "🎖️"],
-          });
+        confetti({
+          particleCount: 40,
+          angle: 90,
+          spread: 60,
+          origin: { x: 0.5, y: 0.5 },
+          shapes: ["text"],
+          scalar: 1.4,
+          ticks: 180,
+          gravity: 0.3,
+          drift: 0.6,
+          text: ["✨", "🌟", "💫", "🎖️"],
+        });
 
-          gsap.fromTo(
-            "#streak-badge",
-            { scale: 0.8 },
-            {
-              scale: 1.2,
-              opacity: 1,
-              duration: 3,
-              ease: "elastic.out(1, 0.5)",
-            }
-          );
+        gsap.fromTo(
+          "#streak-badge",
+          { scale: 0.8 },
+          {
+            scale: 1.2,
+            opacity: 1,
+            duration: 3,
+            ease: "elastic.out(1, 0.5)",
+          }
+        );
 
-          gsap.to("#streak-badge", {
-            delay: 3,
-            opacity: 0.5,
-            scale: 0.8,
-            duration: 2.5,
-            ease: "power1.in",
-            onComplete: () => {
-              $("#streak-badge").hide();
-            },
-          });
+        gsap.to("#streak-badge", {
+          delay: 3,
+          opacity: 0.5,
+          scale: 0.8,
+          duration: 2.5,
+          ease: "power1.in",
+          onComplete: () => {
+            $("#streak-badge").hide();
+          },
+        });
 
-          progress.resetStreak();
-        }
+        progress.resetStreak();
       }
 
       $(card)
@@ -185,15 +179,26 @@ export function initEventHandlers() {
         }
       );
     } else {
+      // mark blank wrong and count it (first-answer only)
       blank.addClass("wrong");
-      if (!wasWrong) {
-        if (wasCorrect) {
-          progress.adjustFromCorrectToWrong();
-        } else {
-          progress.incrementWrong();
-        }
-      }
+      progress.incrementWrong();
       document.getElementById("sound-wrong")?.play();
+
+      // mark the selected wrong button with visual feedback
+      $(this).addClass("wrong-option");
+
+      // reveal which option was correct so the user can learn from the mistake
+      const correctBtn = $(card).find(
+        `.option-btn[data-choice="${correctAnswer}"]`
+      );
+      correctBtn.addClass("correct-option");
+
+      // disable all options for this card (first-answer enforced)
+      $(card)
+        .find(".option-btn")
+        .each(function () {
+          $(this).prop("disabled", true);
+        });
     }
 
     updateProgress();

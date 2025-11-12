@@ -45,7 +45,8 @@ export function updateProgress() {
     `Correct: ${correct} | Wrong: ${wrong} | Score: ${percent}%`
   );
 
-  if (correct === total && total > 0) {
+  const totalAttempts = correct + wrong;
+  if (totalAttempts === total && total > 0) {
     unlockLessonBadge(window.currentLessonKey);
     const currentIndex = parseInt(
       (window.currentLessonKey || "").replace("lesson", "")
