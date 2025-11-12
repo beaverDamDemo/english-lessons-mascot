@@ -88,7 +88,8 @@ export function initEventHandlers() {
         } else {
           progress.incrementCorrect();
         }
-        if (streak === 5) {
+        const { streak: updatedStreak } = progress.getStats();
+        if (updatedStreak === 5) {
           document.getElementById("sound-happy-blip")?.play();
 
           confetti({
@@ -118,7 +119,7 @@ export function initEventHandlers() {
             .fadeOut(500);
         }
 
-        if (streak === 10) {
+        if (updatedStreak === 10) {
           document.getElementById("sound-happy-blip")?.play();
 
           gsap.set("#streak-badge", {
