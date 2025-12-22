@@ -1,8 +1,13 @@
 {
   "lesson1": {
     "topic": "AM / PM / 24h",
-    "options": ["7:00", "19:00", "7 AM", "7 PM"],
-    "help": "AM/PM is a 12-hour clock format, while 24h format counts hours from 00:00 to 23:59.",
+    "options": [
+      "7:00",
+      "19:00",
+      "7 AM",
+      "7 PM"
+    ],
+    "help": "Two ways to tell time: the 12-hour format (AM/PM) and the 24-hour format. In the 12-hour system, 'AM' means morning hours (from midnight 00:00 until before noon 11:59), and 'PM' means afternoon and evening hours (from 12:00 noon until 11:59 at night). For example, 7 AM is early morning, while 7 PM is evening. In the 24-hour system, the day is counted continuously from 00:00 (midnight) to 23:59. So 7 AM is written as 07:00, and 7 PM is written as 19:00. This format is often used in timetables, tickets, and international communication because it avoids confusion.\n\nในภาษาอังกฤษมีสองวิธีหลักในการบอกเวลา คือ ระบบ 12 ชั่วโมง (AM/PM) และระบบ 24 ชั่วโมง ในระบบ 12 ชั่วโมง 'AM' หมายถึงเวลาตั้งแต่เที่ยงคืน (00:00) จนถึงก่อนเที่ยงวัน (11:59) ส่วน 'PM' หมายถึงเวลาตั้งแต่เที่ยงวัน (12:00) จนถึงก่อนเที่ยงคืน (23:59) เช่น 7 AM คือเวลาเช้า ส่วน 7 PM คือเวลาเย็น ในระบบ 24 ชั่วโมง วันจะถูกนับต่อเนื่องตั้งแต่ 00:00 จนถึง 23:59 ดังนั้น 7 AM จะเขียนเป็น 07:00 และ 7 PM จะเขียนเป็น 19:00 ระบบนี้มักใช้ในตารางเวลา ตั๋วเดินทาง และการสื่อสารระหว่างประเทศ เพราะช่วยลดความสับสน.",
     "examples": [
       "7 AM is _______ in 24h format.|7:00",
       "7 PM is _______ in 24h format.|19:00",
@@ -37,7 +42,7 @@
       "wife",
       "husband"
     ],
-    "help": "A sibling is a brother or sister — someone who has the same parents as you.",
+    "help": "A sibling is a brother or sister — someone who has the same parents as you.\n\nพี่น้อง (sibling) หมายถึง พี่ชายหรือน้องสาว — คนที่มีพ่อแม่เดียวกันกับคุณ",
     "examples": [
       "My _______ is older than me and loves video games.|brother",
       "Her _______ is coming to visit from college.|sister",
@@ -63,8 +68,13 @@
   },
   "lesson3": {
     "topic": "go / went / will go / is going",
-    "options": ["go", "went", "will go", "is going"],
-    "help": "This lesson teaches you how to talk about groups. Use “we” when you include yourself (“We are friends”) and “they” when you talk about others (“They are at school”). “Our” shows something belongs to your group (“our house”), and “their” shows something belongs to another group (“their car”). Try talking about your family, friends, or classmates using these words. For example: “We love our dog,” or “They forgot their books.” These words are great for teamwork, storytelling, and everyday conversations.",
+    "options": [
+      "go",
+      "went",
+      "will go",
+      "is going"
+    ],
+    "help": "This lesson teaches you how to use the verb 'to go' in different tenses. 'Go' is used for present or regular actions (e.g., 'I go to school every day'). 'Went' is the past tense, used for actions that already happened (e.g., 'She went to the market yesterday'). 'Will go' is the future tense, used for actions that will happen later (e.g., 'We will go to the zoo tomorrow'). 'Is going' is the present continuous tense, used for actions happening right now (e.g., 'He is going to the gym now'). Learning these forms helps you talk about past, present, and future activities clearly.\n\nบทเรียนนี้สอนการใช้คำกริยา 'to go' ในกาลต่าง ๆ 'Go' ใช้สำหรับการกระทำในปัจจุบันหรือการกระทำที่ทำเป็นประจำ (เช่น 'ฉันไปโรงเรียนทุกวัน'). 'Went' เป็นรูปอดีต ใช้สำหรับการกระทำที่เกิดขึ้นแล้ว (เช่น 'เธอไปตลาดเมื่อวาน'). 'Will go' เป็นรูปอนาคต ใช้สำหรับการกระทำที่จะเกิดขึ้นในภายหลัง (เช่น 'พวกเราจะไปสวนสัตว์พรุ่งนี้'). 'Is going' เป็นรูปปัจจุบันต่อเนื่อง ใช้สำหรับการกระทำที่กำลังเกิดขึ้นในตอนนี้ (เช่น 'เขากำลังไปยิมตอนนี้'). การเรียนรู้รูปแบบเหล่านี้ช่วยให้คุณพูดถึงกิจกรรมในอดีต ปัจจุบัน และอนาคตได้อย่างชัดเจน.",
     "examples": [
       "Every weekday, I _______ to school by bike.|go",
       "Yesterday, she _______ to the market for fruit.|went",
@@ -100,8 +110,13 @@
   },
   "lesson4": {
     "topic": "is / are / was / were",
-    "options": ["is", "are", "was", "were"],
-    "help": "This lesson focuses on the verb “to be,” which is used all the time in English. Use “I am” for yourself, “you are” for the person you're talking to, “he/she/it is” for others, and “we/they are” for groups. For example: “I am happy,” “She is tired,” “They are ready.” These forms help you describe feelings, locations, and facts. Try making short sentences about yourself and others. This is one of the most useful tools for speaking clearly and confidently in English.",
+    "options": [
+      "is",
+      "are",
+      "was",
+      "were"
+    ],
+    "help": "This lesson teaches the verb 'to be' in different forms. 'Is' and 'are' are used in the present tense. Use 'is' with singular subjects (he, she, it, or one thing), and 'are' with plural subjects (we, you, they, or many things). 'Was' and 'were' are used in the past tense. Use 'was' with singular subjects (I, he, she, it), and 'were' with plural subjects (we, you, they). For example: 'She is happy' (present), 'They are students' (present), 'He was tired yesterday' (past), 'We were at the park' (past). These forms help you describe states, feelings, and facts in both present and past situations.\n\nบทเรียนนี้สอนการใช้คำกริยา 'to be' ในรูปแบบต่าง ๆ 'Is' และ 'are' ใช้ในกาลปัจจุบัน โดย 'is' ใช้กับประธานเอกพจน์ (เขา, เธอ, มัน หรือสิ่งเดียว) และ 'are' ใช้กับประธานพหูพจน์ (พวกเรา, คุณ, พวกเขา หรือหลายสิ่ง). 'Was' และ 'were' ใช้ในกาลอดีต โดย 'was' ใช้กับประธานเอกพจน์ (ฉัน, เขา, เธอ, มัน) และ 'were' ใช้กับประธานพหูพจน์ (พวกเรา, คุณ, พวกเขา). ตัวอย่างเช่น: 'เธอมีความสุข' (She is happy – ปัจจุบัน), 'พวกเขาเป็นนักเรียน' (They are students – ปัจจุบัน), 'เขาเหนื่อยเมื่อวานนี้' (He was tired yesterday – อดีต), 'พวกเราอยู่ที่สวนสาธารณะ' (We were at the park – อดีต). รูปแบบเหล่านี้ช่วยให้คุณบรรยายสภาพ ความรู้สึก และข้อเท็จจริงได้ทั้งในปัจจุบันและอดีต.",
     "examples": [
       "The dog _______ hungry right now.|is",
       "They _______ at the park yesterday afternoon.|were",
@@ -137,8 +152,13 @@
   },
   "lesson5": {
     "topic": "Do / Does / Did / Are",
-    "options": ["Do", "Does", "Did", "Are"],
-    "help": "Here you’ll learn how to point to things and describe where they are. Use “this” for one thing near you (“This is my pen”) and “that” for one thing far away (“That is your bag”). “These” is for multiple things near you, and “those” is for multiple things far away. Try pointing to objects around you and saying “this” or “that.” It’s a great way to practice describing your environment. These words are super helpful when shopping, giving directions, or showing things to others.",
+    "options": [
+      "Do",
+      "Does",
+      "Did",
+      "Are"
+    ],
+    "help": "This lesson teaches you how to ask and talk about actions and situations using 'do,' 'does,' 'did,' and 'are.' 'Do' is used for present questions with 'I,' 'you,' 'we,' and 'they' (e.g., 'Do you like pizza?'). 'Does' is used for present questions with 'he,' 'she,' or 'it' (e.g., 'Does she live near here?'). 'Did' is the past tense form, used for questions about actions that already happened (e.g., 'Did you see that movie yesterday?'). 'Are' is used for present continuous questions, asking about things happening right now (e.g., 'Are we going to the park today?'). These words help you ask questions clearly in different tenses and with different subjects.\n\nบทเรียนนี้สอนการใช้คำกริยา 'do,' 'does,' 'did,' และ 'are' เพื่อถามและพูดถึงการกระทำหรือสถานการณ์ 'Do' ใช้สำหรับคำถามในปัจจุบันกับ 'I,' 'you,' 'we,' และ 'they' (เช่น 'Do you like pizza?'). 'Does' ใช้สำหรับคำถามในปัจจุบันกับ 'he,' 'she,' หรือ 'it' (เช่น 'Does she live near here?'). 'Did' เป็นรูปอดีต ใช้สำหรับคำถามเกี่ยวกับการกระทำที่เกิดขึ้นแล้ว (เช่น 'Did you see that movie yesterday?'). 'Are' ใช้สำหรับคำถามในรูปปัจจุบันต่อเนื่อง เพื่อถามถึงสิ่งที่กำลังเกิดขึ้นตอนนี้ (เช่น 'Are we going to the park today?'). คำเหล่านี้ช่วยให้คุณตั้งคำถามได้อย่างชัดเจนในกาลต่าง ๆ และกับประธานที่แตกต่างกัน.",
     "examples": [
       "_______ you like pizza?|Do",
       "_______ she live near here with her parents?|Does",
@@ -174,8 +194,13 @@
   },
   "lesson6": {
     "topic": "me / you / my / your",
-    "options": ["me", "you", "my", "your"],
-    "help": "This lesson helps you talk about yourself and others in everyday situations. Use “me” when talking about yourself as the object (“Give it to me”), and “you” when talking to someone else. “My” shows something belongs to you (“my phone”), and “your” shows something belongs to the person you're talking to (“your keys”). Try using these in real life: “This is my bag. Is that your jacket?” Practice pointing to things and saying whose they are—it’s a great way to build confidence with basic conversation.,",
+    "options": [
+      "me",
+      "you",
+      "my",
+      "your"
+    ],
+    "help": "This lesson teaches how to use 'me,' 'you,' 'my,' and 'your' in everyday conversation. 'Me' is used when you talk about yourself as the object of an action (e.g., 'Give it to me'). 'You' is used when speaking directly to another person (e.g., 'I saw you at the café'). 'My' shows possession, meaning something belongs to you (e.g., 'This is my phone'). 'Your' shows possession for the person you are talking to (e.g., 'Is that your jacket?'). Practicing these words helps you describe ownership and interact naturally with others.\n\nบทเรียนนี้สอนการใช้คำว่า 'me,' 'you,' 'my,' และ 'your' ในการสนทนาประจำวัน 'Me' ใช้เมื่อพูดถึงตัวเองในฐานะกรรมของการกระทำ (เช่น 'Give it to me' – ให้สิ่งนั้นกับฉัน). 'You' ใช้เมื่อพูดกับอีกคนโดยตรง (เช่น 'I saw you at the café' – ฉันเห็นคุณที่ร้านกาแฟ). 'My' แสดงความเป็นเจ้าของ หมายถึงสิ่งที่เป็นของคุณ (เช่น 'This is my phone' – นี่คือโทรศัพท์ของฉัน). 'Your' แสดงความเป็นเจ้าของของคนที่คุณกำลังพูดด้วย (เช่น 'Is that your jacket?' – นั่นคือเสื้อแจ็คเก็ตของคุณหรือเปล่า). การฝึกใช้คำเหล่านี้ช่วยให้คุณอธิบายการเป็นเจ้าของและสื่อสารกับผู้อื่นได้อย่างเป็นธรรมชาติ.",
     "examples": [
       "Can you give _______ a ride to the station?|me",
       "I think _______ phone is ringing.|your",
@@ -241,8 +266,13 @@
   },
   "lesson7": {
     "topic": "he / she / his / her",
-    "options": ["he", "she", "his", "her"],
-    "help": "In this lesson, you’ll learn how to talk about other people and things. Use “he” for a man or boy, “she” for a woman or girl, and “it” for objects or animals (unless the animal has a name, then use “he” or “she”). For example: “He is my brother,” “She is a teacher,” “It is a cat.” Try describing people around you or things in your room. This helps you build sentences and describe the world clearly. Don’t worry if you mix them up—just keep practicing!",
+    "options": [
+      "he",
+      "she",
+      "his",
+      "her"
+    ],
+    "help": "This lesson teaches how to use 'he,' 'she,' 'his,' and 'her' when talking about people. 'He' is used for a man or boy (e.g., 'He is my brother'). 'She' is used for a woman or girl (e.g., 'She is my sister'). 'His' shows possession for a man or boy (e.g., 'This is his book'). 'Her' shows possession for a woman or girl (e.g., 'That is her bag'). These words help you describe people and their belongings clearly in everyday conversation.\n\nบทเรียนนี้สอนการใช้คำว่า 'he,' 'she,' 'his,' และ 'her' เมื่อพูดถึงคน 'He' ใช้สำหรับผู้ชายหรือเด็กผู้ชาย (เช่น 'He is my brother' – เขาเป็นพี่ชายของฉัน). 'She' ใช้สำหรับผู้หญิงหรือเด็กผู้หญิง (เช่น 'She is my sister' – เธอเป็นน้องสาวของฉัน). 'His' ใช้เพื่อแสดงความเป็นเจ้าของของผู้ชายหรือเด็กผู้ชาย (เช่น 'This is his book' – นี่คือหนังสือของเขา). 'Her' ใช้เพื่อแสดงความเป็นเจ้าของของผู้หญิงหรือเด็กผู้หญิง (เช่น 'That is her bag' – นั่นคือกระเป๋าของเธอ). คำเหล่านี้ช่วยให้คุณบรรยายคนและสิ่งของที่เป็นของพวกเขาได้อย่างชัดเจนในการสนทนาประจำวัน.",
     "examples": [
       "_______ is my brother and he plays guitar.|he",
       "_______ is my sister and she loves painting.|she",
